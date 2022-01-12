@@ -1,16 +1,15 @@
 
 =========================
-Machine Learning Glossary
+Thuật ngữ chuyên ngành Học máy
 =========================
 
-Brief visual explanations of machine learning concepts with diagrams, code examples and links to resources for learning more.
+Giải thích một cách ngắn gọn, trực quan các khái niệm chuyên ngành Học máy kèm với sơ đồ, code mẫu, và các tài nguyên tham khảo khác.
 
 .. warning::
-
-    This document is under early stage development. If you find errors, please raise an `issue <https://github.com/bfortuner/ml-cheatsheet/issues>`_ or `contribute <https://github.com/bfortuner/ml-cheatsheet/blob/master/README.md>`_ a better definition!
+    Bản thuật ngữ Tiếng Việt này đang được dịch lại từ `bản thuật ngữ tiếng Anh <https://ml-cheatsheet.readthedocs.io/en/latest/>`_ và đang trong giai đoạn phát triển. Nếu bạn đọc bắt gặp bất cứ lỗi nào, vui lòng tạo một `issue <https://github.com/trgiangdo/ml-glossary-vn/issues>`_ hoặc đóng góp cho bản thuật ngữ này theo hướng dẫn `trên Github <https://github.com/trgiangdo/ml-glossary-vn/blob/main/README.md>`_.
 
 .. toctree::
-    :caption: Basics
+    :caption: Thuật ngữ cơ bản
     :maxdepth: 1
 
     linear_regression
@@ -19,7 +18,7 @@ Brief visual explanations of machine learning concepts with diagrams, code examp
     glossary
 
 .. toctree::
-    :caption: Math
+    :caption: Toán
     :maxdepth: 1
 
     calculus
@@ -30,7 +29,7 @@ Brief visual explanations of machine learning concepts with diagrams, code examp
 
 .. toctree::
     :maxdepth: 1
-    :caption: Neural Networks
+    :caption: Mạng Nơ-ron
 
     nn_concepts
     forwardpropagation
@@ -44,7 +43,7 @@ Brief visual explanations of machine learning concepts with diagrams, code examp
 
 .. toctree::
     :maxdepth: 1
-    :caption: Algorithms (TODO)
+    :caption: Thuật toán (TODO)
 
     Classification <classification_algos>
     Clustering <clustering_algos>
@@ -53,7 +52,7 @@ Brief visual explanations of machine learning concepts with diagrams, code examp
 
 .. toctree::
     :maxdepth: 1
-    :caption: Resources
+    :caption: Các tài nguyên khác
     :titlesonly:
 
     datasets
@@ -63,10 +62,10 @@ Brief visual explanations of machine learning concepts with diagrams, code examp
 
 .. toctree::
     :maxdepth: 1
-    :caption: Contributing
+    :caption: Đóng góp
     :titlesonly:
 
-    How to contribute <contribute>
+    Hướng dẫn đóng góp <contribute>
 
 
 .. https://en.wikipedia.org/wiki/Outline_of_machine_learning
