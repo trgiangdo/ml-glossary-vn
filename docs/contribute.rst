@@ -1,7 +1,8 @@
 .. _contribute:
 
 ==========
-Contribute
+Hướng dẫn đóng góp
 ==========
 
-Become a contributor! Check out our `github <http://github.com/bfortuner/ml-cheatsheet/>`_ for more information.
+Để hỗ trợ và tham gia đóng góp, bạn có thể tham khảo `trang github của dự án <http://github.com/trgiangdo/ml-glossary-vn/>`_ để biết thêm thông tin chi tiết.
+Xin trân trọng cảm ơn.
