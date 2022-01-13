@@ -1,76 +1,81 @@
 .. _linear_regression:
 
-=================
-Linear Regression
-=================
+======================================
+Hồi Quy Tuyến Tính (Linear Regression)
+======================================
 
 .. contents::
     :local:
     :depth: 2
 
 
-Introduction
-============
+Giới thiệu
+==========
 
-Linear Regression is a supervised machine learning algorithm where the predicted output is continuous and has a constant slope. It's used to predict values within a continuous range, (e.g. sales, price) rather than trying to classify them into categories (e.g. cat, dog). There are two main types:
+Hồi quy tuyến tính trong học máy là một thuật toán học có giám sát (khác với phương pháp hồi quy tuyến tính trong thống kê), với đầu ra là giá trị liên tục và có hệ số góc là hằng số.
+Thuật toán này được sử dụng để dự đoán các giá trị trong một khoảng liên tục (ví dụ như giá cả, doanh thu bán hàng) thay vì học cách phân loại chúng thành các danh mục riêng biệt (ví dụ như cho hay mèo).
+Ta có thể phân loại hồi quy tuyến tính thành hai loại chính:
 
-.. rubric:: Simple regression
+.. rubric:: Hồi quy tuyến tính đơn biến (Simple regression)
 
-Simple linear regression uses traditional slope-intercept form, where :math:`m` and :math:`b` are the variables our algorithm will try to "learn" to produce the most accurate predictions. :math:`x` represents our input data and :math:`y` represents our prediction.
+Hồi quy tuyến tính đơn biến sử dụng dạng đường chéo cơ bản, với :math:`m` và :math:`b` là những biến số trong thuật toán mà sẽ cố gắng "học" để dự đoán đầu ra một cách chính xác nhất có thể, :math:`x` ký hiệu dữ liệu đầu vào và :math:`y` ký hiệu cho dự đoán ở đầu ra.
 
 .. math::
 
   y = mx + b
 
-.. rubric:: Multivariable regression
+.. rubric:: Hồi quy tuyến tính đa biến (Multivariable regression)
 
-A more complex, multi-variable linear equation might look like this, where :math:`w` represents the coefficients, or weights, our model will try to learn.
+Hồi quy tuyến tính đa biến phức tạp hơn và có dạng như sau, trong đó :math:`w` ký hiệu các hệ số, hay trọng số (weight), mà mô hình cần học.
 
 .. math::
 
   f(x,y,z) = w_1 x + w_2 y + w_3 z
 
-The variables :math:`x, y, z` represent the attributes, or distinct pieces of information, we have about each observation. For sales predictions, these attributes might include a company's advertising spend on radio, TV, and newspapers.
+Các biến số :math:`x, y, z` ký hiệu các thuộc tính, hay những số liệu riêng biệt, mà ta có tại mỗi quan sát (observation).
+Ví dụ, để dự đoán doanh thu, các thuộc tính này có thể là số tiền mà công ty đầu tư vào quảng cáo lần lượt trên đài radio, TV, và báo (news).
 
 .. math::
 
   Sales = w_1 Radio + w_2 TV + w_3 News
 
 
-Simple regression
-=================
+Hồi quy tuyến tính đơn biến
+===========================
 
-Let’s say we are given a `dataset <http://www-bcf.usc.edu/~gareth/ISL/Advertising.csv>`_ with the following columns (features): how much a company spends on Radio advertising each year and its annual Sales in terms of units sold. We are trying to develop an equation that will let us to predict units sold based on how much a company spends on radio advertising. The rows (observations) represent companies.
+Giả sử ta được cung cấp một `tập dữ liệu <http://www-bcf.usc.edu/~gareth/ISL/Advertising.csv>`_ với các cột (đặc trưng) sau: **số tiền** mà một công ty đã dành để quảng cáo trên đài radio mỗi năm và **doanh thu** hàng năm tính bằng số sản phẩm bán ra.
+Ta đang cố gắng phát triển một phương trình mà sẽ cho phép chúng ta có thể dự đoán số sản phẩm bán ra dựa trên số tiền mà một công ty đã dành cho quảng cáo qua đài radio.
+Các hàng (các quan sát) tương ứng với các công ty.
 
-+--------------+---------------+-----------+
-| **Company**  | **Radio ($)** | **Sales** |
-+--------------+---------------+-----------+
-| Amazon       | 37.8          | 22.1      |
-+--------------+---------------+-----------+
-| Google       | 39.3          | 10.4      |
-+--------------+---------------+-----------+
-| Facebook     | 45.9          | 18.3      |
-+--------------+---------------+-----------+
-| Apple        | 41.3          | 18.5      |
-+--------------+---------------+-----------+
++--------------+-------------------+--------------+
+| **Công ty**  | **Đài radio ($)** | **Doanh thu** |
++--------------+-------------------+--------------+
+| Amazon       | 37.8              | 22.1         |
++--------------+-------------------+--------------+
+| Google       | 39.3              | 10.4         |
++--------------+-------------------+--------------+
+| Facebook     | 45.9              | 18.3         |
++--------------+-------------------+--------------+
+| Apple        | 41.3              | 18.5         |
++--------------+-------------------+--------------+
 
 
-Making predictions
-------------------
+Đưa ra dự đoán
+--------------
 
-Our prediction function outputs an estimate of sales given a company's radio advertising spend and our current values for *Weight* and *Bias*.
+Hàm dự đoán của chúng ta có đầu ra là doanh thu ước lượng dựa trên số tiền mà công ty đó dành cho quảng cáo qua đài radio cùng với giá trị hiện tại của *Trọng số* và *Độ chệch (Bias)*.
 
 .. math::
 
-  Sales = Weight \cdot Radio + Bias
+  \text{Doanh thu} = \text{Trọng số} \times \text{Số tiền quảng cáo qua radio} + \text{Độ chệch}
 
-Weight
+Trọng số
   the coefficient for the Radio independent variable. In machine learning we call coefficients *weights*.
 
 Radio
   the independent variable. In machine learning we call these variables *features*.
 
-Bias
+Độ chệch
   the intercept where our line intercepts the y-axis. In machine learning we can call intercepts *bias*. Bias offsets all predictions that we make.
 
 
