@@ -12,7 +12,7 @@ Hồi Quy Tuyến Tính (Linear Regression)
 Giới thiệu
 ==========
 
-Hồi quy tuyến tính trong học máy là một thuật toán học có giám sát (khác ), với đầu ra là giá trị liên tục và có hệ số góc là hằng số.
+Hồi quy tuyến tính trong học máy là một thuật toán học có giám sát, với đầu ra là giá trị liên tục và có hệ số góc là hằng số.
 Thuật toán này được sử dụng để dự đoán các giá trị trong một khoảng liên tục (ví dụ như giá cả, doanh thu bán hàng) thay vì học cách phân loại chúng thành các danh mục riêng biệt (ví dụ như cho hay mèo).
 
 .. note::
@@ -216,7 +216,6 @@ Ta có thể tính gradient của hàm chi phí này theo công thức:
 
 .. rubric:: Code
 
-To solve for the gradient, we iterate through our data points using our new weight and bias values and take the average of the partial derivatives. The resulting gradient tells us the slope of our cost function at our current position (i.e. weight and bias) and the direction we should update to reduce our cost function (we move in the direction opposite the gradient). The size of our update is controlled by the :ref:`learning rate <glossary_learning_rate>`.
 Để tính gradient, ta lặp qua tất cả các điểm dữ liệu với giá trị trọng số và hệ số điều chỉnh mới, sau đó lấy trung bình các đạo hàm riêng.
 Kết quả gradient thu được cho ta biết độ dốc của hàm chi phí tại thời điểm hiện tại (tức là với trọng số và hệ số điều chỉnh hiện có) và ta cần phải cập nhật các giá trị để giảm hàm chi phí đi (bằng cách đi ngược lại gradient).
 Độ lớn của bước cập nhật được quy định bởi :ref:`tốc độ học (learning rate) <glossary_learning_rate>`.
@@ -275,7 +274,7 @@ Trước khi huấn luyện, ta cần phải khởi tạo các trọng số (the
       return weight, bias, cost_history
 
 
-Kiểm định mô hình
+Đánh giá mô hình
 ----------------
 
 Nếu mô hình của chúng ta thực sự hoạt động, ta sẽ thấy chi phí giảm dần sau mỗi vòng lặp.
@@ -519,14 +518,18 @@ Và đó là toàn bộ về Hồi quy tuyến tính đa biến.
 
 
 
-Simplifying with matrices
--------------------------
+Đơn giản hoá với ma trận
+-----------------------
 
-The gradient descent code above has a lot of duplication. Can we improve it somehow? One way to refactor would be to loop through our features and weights--allowing our function to handle any number of features. However there is another even better technique: *vectorized gradient descent*.
+Đoạn code hạ gradient ở trên có khá nhiều đoạn trùng lặp.
+Liệu bằng cách nào đó ta có thể cải thiện vấn đề này?
+Một trong những cách để tổ chức lại đoạn code này là lặp qua từng đặc trưng và trọng số -- cho phép hàm có thể tính toán với bao nhiêu đặc trưng cũng được.
+Tuy nhiên, có một kỹ thuật khác tốt hơn nhiều: *vector hoá thuật toán hạ gradient*.
 
-.. rubric:: Math
+.. rubric:: Công thức toán học
 
-We use the same formula as above, but instead of operating on a single feature at a time, we use matrix multiplication to operative on all features and weights simultaneously. We replace the :math:`x_i` terms with a single feature matrix :math:`X`.
+Ta sử dụng y nguyên công thức ở trên, nhưng thay vì thực hiện trên từng đặc trưng một, ta sử dụng toán tử nhân ma trận để tính toán với tất cả các đặc trưng và trọng số cùng một lúc.
+Ta thay các ký hiệu :math:`x_i` bằng một ma trận đặc trưng duy nhất :math:`X`.
 
 .. math::
 
@@ -560,41 +563,44 @@ We use the same formula as above, but instead of operating on a single feature a
       **
       companies = len(X)
 
-      #1 - Get Predictions
+      #1 - Dự đoán kết quả
       predictions = predict(X, weights)
 
-      #2 - Calculate error/loss
+      #2 - Tính sai số/lỗi
       error = targets - predictions
 
-      #3 Transpose features from (200, 3) to (3, 200)
-      # So we can multiply w the (200,1)  error matrix.
-      # Returns a (3,1) matrix holding 3 partial derivatives --
-      # one for each feature -- representing the aggregate
-      # slope of the cost function across all observations
+      #3 - Chuyển vị ma trận đặc trưng từ kích thước (200, 3) về (3, 200)
+      # để ta có thể nhân với ma trận sai số (200,1).
+      # Trả về một ma trận (3,1) gồm có 3 đạo hàm riêng -
+      # mỗi đạo hàm cho một đặc trưng -- đại diện cho tổng độ nghiêng
+      # của hàm chi phí qua tất cả các quan sát.
       gradient = np.dot(-X.T,  error)
 
-      #4 Take the average error derivative for each feature
+      #4 - Tính trung bình đạo hàm của sai số với mỗi đặc trưng
       gradient /= companies
 
-      #5 - Multiply the gradient by our learning rate
+      #5 - Nhân gradient với tốc độ học
       gradient *= lr
 
-      #6 - Subtract from our weights to minimize cost
+      #6 - Cập nhật trọng số bằng cách trừ đi gradient để tối thiểu hoá chi phí
       weights -= gradient
 
       return weights
 
 
-Bias term
----------
+Hệ số điều chỉnh
+---------------
 
-Our train function is the same as for simple linear regression, however we're going to make one final tweak before running: add a :ref:`bias term <glossary_bias_term>` to our feature matrix.
+Hàm huấn luyện ở trên giống với trường hợp hồi quy tuyến tính đơn giản, tuy nhiên ta sẽ thay đổi một chút trước khi kết thúc: thêm một :ref:`hệ số điều chỉnh <glossary_bias_term>` vào ma trận đặc trưng.
 
-In our example, it's very unlikely that sales would be zero if companies stopped advertising. Possible reasons for this might include past advertising, existing customer relationships, retail locations, and salespeople. A bias term will help us capture this base case.
+Trong ví dụ ở trên, khó mà có thể xảy ra trường hợp doanh thu bằng 0 nếu như các công ty ngừng quảng cáo.
+Lý do cho việc này có thể bao gồm các quảng cáo trong quá khứ, mối quan hệ với các khách hàng hiện có, vị trí cửa hàng, và đội ngũ kinh doanh.
+Một hệ số điều chỉnh sẽ giúp ta nắm bắt được trường hợp không quảng cáo này.
 
 .. rubric:: Code
 
-Below we add a constant 1 to our features matrix. By setting this value to 1, it turns our bias term into a constant.
+Ở đoạn code dưới đây, ta thêm hằng số :math:`1` vào ma trận đặc trưng.
+Bằng cách đặt giá trị này bằng :math:`1`, ta coi như hệ số điều chỉnh là một hằng số, và các trọng số tương ứng với từng hệ số điều chỉnh sẽ được học như các trọng số bình thường.
 
 ::
 
@@ -602,22 +608,23 @@ Below we add a constant 1 to our features matrix. By setting this value to 1, it
   features = np.append(bias, features, axis=1)
 
 
-Model evaluation
+Đánh giá mô hình
 ----------------
 
-After training our model through 1000 iterations with a learning rate of .0005, we finally arrive at a set of weights we can use to make predictions:
+Sau khi huấn luyện mô hình qua 1000 bước lặp với tốc độ học :math:`0.0005`, ta thu được một tập trọng số mầ ta có thể sử dụng để đưa ra dự đoán
 
 .. math::
 
-  Sales = 4.7TV + 3.5Radio + .81Newspaper + 13.9
+  \text{Doanh thu} = 4.7 \text{TV} + 3.5 \text{Radio} + .81 \text {Báo} + 13.9
 
-Our MSE cost dropped from 110.86 to 6.25.
+MSE giảm từ :math:`110.86` xuống :math:`6.25`.
 
 .. image:: images/multiple_regression_error_history.png
     :align: center
+    :scale: 0.8
 
 
-.. rubric:: References
+.. rubric:: Tài liệu tham khảo
 
 .. [1] https://en.wikipedia.org/wiki/Linear_regression
 .. [2] http://www.holehouse.org/mlclass/04_Linear_Regression_with_multiple_variables.html
