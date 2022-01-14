@@ -12,53 +12,53 @@ Giải thích một cách ngắn gọn, trực quan các khái niệm chuyên ng
     :caption: Thuật ngữ cơ bản
     :maxdepth: 1
 
-    linear_regression
-    gradient_descent
-    logistic_regression
-    glossary
+    linear_regression_vn
+    gradient_descent_vn
+    logistic_regression_vn
+    glossary_vn
 
 .. toctree::
     :caption: Toán
     :maxdepth: 1
 
-    calculus
-    linear_algebra
-    Probability (TODO) <probability>
-    Statistics (TODO) <statistics>
-    math_notation
+    calculus_vn
+    linear_algebra_vn
+    Probability (TODO) <probability_vn>
+    Statistics (TODO) <statistics_vn>
+    math_notation_vn
 
 .. toctree::
     :maxdepth: 1
     :caption: Mạng Nơ-ron
 
-    nn_concepts
-    forwardpropagation
-    backpropagation
-    activation_functions
-    layers
-    loss_functions
-    optimizers
-    regularization
-    architectures
+    nn_concepts_vn
+    forwardpropagation_vn
+    backpropagation_vn
+    activation_functions_vn
+    layers_vn
+    loss_functions_vn
+    optimizers_vn
+    regularization_vn
+    architectures_vn
 
 .. toctree::
     :maxdepth: 1
     :caption: Thuật toán (TODO)
 
-    Classification <classification_algos>
-    Clustering <clustering_algos>
-    Regression <regression_algos>
-    Reinforcement Learning <reinforcement_learning>
+    Classification <classification_algos_vn>
+    Clustering <clustering_algos_vn>
+    Regression <regression_algos_vn>
+    Reinforcement Learning <reinforcement_learning_vn>
 
 .. toctree::
     :maxdepth: 1
     :caption: Các tài nguyên khác
     :titlesonly:
 
-    datasets
-    libraries
-    papers
-    Other <other_content>
+    datasets_vn
+    libraries_vn
+    papers_vn
+    Other <other_content_vn>
 
 .. toctree::
     :maxdepth: 1
