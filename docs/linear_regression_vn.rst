@@ -12,8 +12,12 @@ Hồi Quy Tuyến Tính (Linear Regression)
 Giới thiệu
 ==========
 
-Hồi quy tuyến tính trong học máy là một thuật toán học có giám sát (khác với phương pháp hồi quy tuyến tính trong thống kê), với đầu ra là giá trị liên tục và có hệ số góc là hằng số.
+Hồi quy tuyến tính trong học máy là một thuật toán học có giám sát (khác ), với đầu ra là giá trị liên tục và có hệ số góc là hằng số.
 Thuật toán này được sử dụng để dự đoán các giá trị trong một khoảng liên tục (ví dụ như giá cả, doanh thu bán hàng) thay vì học cách phân loại chúng thành các danh mục riêng biệt (ví dụ như cho hay mèo).
+
+.. note::
+  Cần phân biệt với phương pháp hồi quy tuyến tính trong thống kê.
+
 Ta có thể phân loại hồi quy tuyến tính thành hai loại chính:
 
 .. rubric:: Hồi quy tuyến tính đơn biến (Simple regression)
@@ -37,7 +41,7 @@ Ví dụ, để dự đoán doanh thu, các thuộc tính này có thể là s�
 
 .. math::
 
-  Sales = w_1 Radio + w_2 TV + w_3 News
+  \text{Doanh thu} = w_1 Radio + w_2 TV + w_3 News
 
 
 Hồi quy tuyến tính đơn biến
@@ -47,43 +51,44 @@ Giả sử ta được cung cấp một `tập dữ liệu <http://www-bcf.usc.e
 Ta đang cố gắng phát triển một phương trình mà sẽ cho phép chúng ta có thể dự đoán số sản phẩm bán ra dựa trên số tiền mà một công ty đã dành cho quảng cáo qua đài radio.
 Các hàng (các quan sát) tương ứng với các công ty.
 
-+--------------+-------------------+--------------+
++--------------+-------------------+---------------+
 | **Công ty**  | **Đài radio ($)** | **Doanh thu** |
-+--------------+-------------------+--------------+
-| Amazon       | 37.8              | 22.1         |
-+--------------+-------------------+--------------+
-| Google       | 39.3              | 10.4         |
-+--------------+-------------------+--------------+
-| Facebook     | 45.9              | 18.3         |
-+--------------+-------------------+--------------+
-| Apple        | 41.3              | 18.5         |
-+--------------+-------------------+--------------+
++--------------+-------------------+---------------+
+| Amazon       | 37.8              | 22.1          |
++--------------+-------------------+---------------+
+| Google       | 39.3              | 10.4          |
++--------------+-------------------+---------------+
+| Facebook     | 45.9              | 18.3          |
++--------------+-------------------+---------------+
+| Apple        | 41.3              | 18.5          |
++--------------+-------------------+---------------+
 
 
 Đưa ra dự đoán
 --------------
 
-Hàm dự đoán của chúng ta có đầu ra là doanh thu ước lượng dựa trên số tiền mà công ty đó dành cho quảng cáo qua đài radio cùng với giá trị hiện tại của *Trọng số* và *Độ chệch (Bias)*.
+Hàm dự đoán của chúng ta có đầu ra là doanh thu ước lượng dựa trên số tiền mà công ty đó dành cho quảng cáo qua đài radio cùng với giá trị hiện tại của *Trọng số* và *Hệ số điều chỉnh (Bias)*.
 
 .. math::
 
-  \text{Doanh thu} = \text{Trọng số} \times \text{Số tiền quảng cáo qua radio} + \text{Độ chệch}
+  \text{Doanh thu} = \text{Trọng số} \times \text{Số tiền quảng cáo qua radio} + \text{Hệ số điều chỉnh}
 
 Trọng số
-  the coefficient for the Radio independent variable. In machine learning we call coefficients *weights*.
+  hệ số của biến độc lập Radio (Số tiền quảng cáo qua radio). Trong học máy, ta gọi các hệ số này là *trọng số*.
 
 Radio
   the independent variable. In machine learning we call these variables *features*.
+  biến độc lập. Trong học máy, ta gọi các biến này là *đặc trưng (features)*.
 
-Độ chệch
-  the intercept where our line intercepts the y-axis. In machine learning we can call intercepts *bias*. Bias offsets all predictions that we make.
+Hệ số điều chỉnh
+  giá trị mà đường tuyến tính giao với trục y. Trong học máy, ta có thể gọi giá trị này là *hệ số điều chỉnh (bias)*. Hệ số điều chỉnh giúp bù vào tất cả các dự đoán mà ta đưa ra.
 
-
-
-Our algorithm will try to *learn* the correct values for Weight and Bias. By the end of our training, our equation will approximate the *line of best fit*.
+Thuật toán này của chúng ta sẽ cố để *học* giá trị đúng của Trọng số và Hệ số điều chỉnh.
+Khi hoàn thành quá trình huấn luyện, phương trình của chúng ta sẽ có dạng xấp xỉ *đường thẳng phù hợp nhất* với dữ liệu.
 
 .. image:: images/linear_regression_line_intro.png
     :align: center
+    :scale: 80
 
 .. rubric:: Code
 
@@ -93,26 +98,28 @@ Our algorithm will try to *learn* the correct values for Weight and Bias. By the
       return weight*radio + bias
 
 
-Cost function
--------------
+Hàm chi phí (Cost function)
+---------------------------
 
-The prediction function is nice, but for our purposes we don't really need it. What we need is a :doc:`cost function <loss_functions>` so we can start optimizing our weights.
+Hàm dự đoán thì hay đấy, nhưng với mục đích để *học* thì ta không thực sự cần hàm này. Cái ta cần là một :doc:`hàm chi phí (hay hàm mất mát) <loss_functions>` để ta có thể bắt đầu tối ưu các trọng số.
 
-Let's use :ref:`mse` as our cost function. MSE measures the average squared difference between an observation's actual and predicted values. The output is a single number representing the cost, or score, associated with our current set of weights. Our goal is to minimize MSE to improve the accuracy of our model.
+Ở ví dụ này, chúng ta sẽ sử dụng :ref:`mse` làm hàm chi phí.
+MSE đo trung bình độ lệch bình phương giữa giá trị thực tế quan sát được và giá trị dự đoán.
+Đầu ra của MSE là một số, hay điểm số, thể hiện chi phí tương ứng với tập các trọng số hiện có.
+Mục tiêu của chúng ta là phải tối thiểu hoá MSE để cải thiện độ chính xác của mô hình.
 
-.. rubric:: Math
+.. rubric:: Công thức toán học
 
-Given our simple linear equation :math:`y = mx + b`, we can calculate MSE as:
+Với hàm dạng tuyến tính đơn giản :math:`y = mx + b`, ta có thể tính MSE theo công thức:
 
 .. math::
 
   MSE =  \frac{1}{N} \sum_{i=1}^{n} (y_i - (m x_i + b))^2
 
-.. note::
-
-  - :math:`N` is the total number of observations (data points)
-  - :math:`\frac{1}{N} \sum_{i=1}^{n}` is the mean
-  - :math:`y_i` is the actual value of an observation and :math:`m x_i + b` is our prediction
+Trong đó:
+  - :math:`N` là số các quan sát (điểm dữ liệu).
+  - :math:`\frac{1}{N} \sum_{i=1}^{n}` là giá trị trung bình.
+  - :math:`y_i` là giá trị thực quan sát được và :math:`m x_i + b` là giá trị dự đoán.
 
 .. rubric:: Code
 
@@ -126,28 +133,33 @@ Given our simple linear equation :math:`y = mx + b`, we can calculate MSE as:
       return total_error / companies
 
 
-Gradient descent
-----------------
+Hạ Gradient (Gradient descent)
+------------------------------
 
-To minimize MSE we use :doc:`gradient_descent` to calculate the gradient of our cost function. Gradient descent consists of looking at the error that our weight currently gives us, using the derivative of the cost function to find the gradient (The slope of the cost function using our current weight), and then changing our weight to move in the direction opposite of the gradient. We need to move in the opposite direction of the gradient since the gradient points up the slope instead of down it, so we move in the opposite direction to try to decrease our error. 
+Để tối thiểu hoá MSE, ta sử dụng :doc:`gradient_descent` để tính toán gradient của hàm chi phí.
+Thuật toán hạ gradient bao gồm bước tính sai số của dự đoán sinh bởi tập trọng số hiện có, sử dụng đạo hàm của hàm chi phí để tìm gradient (độ dốc của hàm chi phí với tập trọng số hiện có), và sau đó thay đổi trọng số theo hướng ngược lại với hướng của gradient.
+Việc thay đổi ngược lại với hướng của gradient là do gradient hướng theo chiều tăng lên của độ dốc thay vì chiều giảm, do đó ta cần đi theo hướng ngược lại để có thể giảm sai số.
 
-.. rubric:: Math
+.. rubric:: Công thức toán học
 
-There are two :ref:`parameters <glossary_parameters>` (coefficients) in our cost function we can control: weight :math:`m` and bias :math:`b`. Since we need to consider the impact each one has on the final prediction, we use partial derivatives. To find the partial derivatives, we use the :ref:`chain_rule`. We need the chain rule because :math:`(y - (mx + b))^2` is really 2 nested functions: the inner function :math:`y - (mx + b)` and the outer function :math:`x^2`.
+Có hai :ref:`tham số <glossary_parameters>` (hệ số) trong hàm chi phí mà ta có thể kiểm soát: trọng số :math:`m` và hệ số điều chỉnh :math:`b`.
+Do ta cần phải cân nhắc đến ảnh hưởng của từng tham số đối với kết quả dự đoán, ta cần sử dụng đạo hàm riêng.
+Để tìm đạo hàm riêng, ta sử dụng :ref:`quy tắc chuỗi (chain rule) <chain_rule>`.
+Ta cần quy tắc chuỗi do :math:`(y - (mx + b))^2` thực chất là 2 hàm lồng nhau: hàm :math:`y - (mx + b)` bên trong và hàm :math:`x^2` lồng bên ngoài.
 
-Returning to our cost function:
+Quay trở lại với hàm chi phí ở trên:
 
 .. math::
 
     f(m,b) =  \frac{1}{N} \sum_{i=1}^{n} (y_i - (mx_i + b))^2
 
-Using the following:
+Bằng cách sử dụng dạng biểu diễn sau:
 
 .. math::
 
     (y_i - (mx_i + b))^2 = A(B(m,b))
 
-We can split the derivative into
+Ta có thể tách đạo hàm thành
 
 .. math::
 
@@ -155,7 +167,7 @@ We can split the derivative into
 
     \frac{df}{dx} = A'(x) = 2x
 
-and
+và
 
 .. math::
 
@@ -165,7 +177,7 @@ and
 
     \frac{dx}{db} = B'(b) = 0 - 0 - 1 = -1
 
-And then using the :ref:`chain_rule` which states:
+Và sau đó sử dụng :ref:`quy tắc chuỗi (chain rule) <chain_rule>` theo công thức:
 
 .. math::
 
@@ -173,7 +185,7 @@ And then using the :ref:`chain_rule` which states:
 
     \frac{df}{db} = \frac{df}{dx} \frac{dx}{db}
 
-We then plug in each of the parts to get the following derivatives
+Ta áp dụng vào từng phần để thu được các đạo hàm riêng sau:
 
 .. math::
 
@@ -181,7 +193,7 @@ We then plug in each of the parts to get the following derivatives
 
     \frac{df}{db} = A'(B(m,f)) B'(b) = 2(y_i - (mx_i + b)) \cdot -1
 
-We can calculate the gradient of this cost function as:
+Ta có thể tính gradient của hàm chi phí này theo công thức:
 
 .. math::
   \begin{align}
@@ -205,6 +217,9 @@ We can calculate the gradient of this cost function as:
 .. rubric:: Code
 
 To solve for the gradient, we iterate through our data points using our new weight and bias values and take the average of the partial derivatives. The resulting gradient tells us the slope of our cost function at our current position (i.e. weight and bias) and the direction we should update to reduce our cost function (we move in the direction opposite the gradient). The size of our update is controlled by the :ref:`learning rate <glossary_learning_rate>`.
+Để tính gradient, ta lặp qua tất cả các điểm dữ liệu với giá trị trọng số và hệ số điều chỉnh mới, sau đó lấy trung bình các đạo hàm riêng.
+Kết quả gradient thu được cho ta biết độ dốc của hàm chi phí tại thời điểm hiện tại (tức là với trọng số và hệ số điều chỉnh hiện có) và ta cần phải cập nhật các giá trị để giảm hàm chi phí đi (bằng cách đi ngược lại gradient).
+Độ lớn của bước cập nhật được quy định bởi :ref:`tốc độ học (learning rate) <glossary_learning_rate>`.
 
 ::
 
@@ -214,14 +229,15 @@ To solve for the gradient, we iterate through our data points using our new weig
       companies = len(radio)
 
       for i in range(companies):
-          # Calculate partial derivatives
+          # Tính các đạo hàm riêng
           # -2x(y - (mx + b))
           weight_deriv += -2*radio[i] * (sales[i] - (weight*radio[i] + bias))
 
           # -2(y - (mx + b))
           bias_deriv += -2*(sales[i] - (weight*radio[i] + bias))
 
-      # We subtract because the derivatives point in direction of steepest ascent
+      # Ta sử dụng phép trừ do đạo hàm riêng có hướng là hướng dốc nhất
+      # theo chiều đi lên (tăng dần) của hàm chi phí
       weight -= (weight_deriv / companies) * learning_rate
       bias -= (bias_deriv / companies) * learning_rate
 
@@ -230,12 +246,13 @@ To solve for the gradient, we iterate through our data points using our new weig
 
 .. _simple_linear_regression_training:
 
-Training
---------
+Huấn luyện
+----------
 
-Training a model is the process of iteratively improving your prediction equation by looping through the dataset multiple times, each time updating the weight and bias values in the direction indicated by the slope of the cost function (gradient). Training is complete when we reach an acceptable error threshold, or when subsequent training iterations fail to reduce our cost.
+Huấn luyện một mô hình là quá trình liên tục cải thiện hàm dự đoán bằng cách lặp nhiều lần qua tập dữ liệu, mỗi lần lặp lại cập nhật giá trị trọng số và hệ số điều chỉnh theo hướng quy định bởi độ dốc của hàm chi phí (gradient).
+Huấn luyện hoàn thành khi ta đạt đến một ngưỡng sai số chấp nhận được, hoặc khi các vòng lặp tiếp theo không thể giúp giảm chi phí đi được nữa.
 
-Before training we need to initialize our weights (set default values), set our :ref:`hyperparameters <glossary_hyperparameters>` (learning rate and number of iterations), and prepare to log our progress over each iteration.
+Trước khi huấn luyện, ta cần phải khởi tạo các trọng số (theo giá trị mặc định), quy định các :ref:`siêu tham số (hyperparameters) <glossary_hyperparameters>` (tốc độ học và số vòng lặp huấn luyện), và chuẩn bị ghi lại nhật ký quá trình học qua mỗi lần lặp.
 
 .. rubric:: Code
 
@@ -247,23 +264,23 @@ Before training we need to initialize our weights (set default values), set our 
       for i in range(iters):
           weight,bias = update_weights(radio, sales, weight, bias, learning_rate)
 
-          #Calculate cost for auditing purposes
+          # Tính chi phí
           cost = cost_function(radio, sales, weight, bias)
           cost_history.append(cost)
 
-          # Log Progress
+          # Ghi lại nhật ký quá trình học của mô hình
           if i % 10 == 0:
               print "iter={:d}    weight={:.2f}    bias={:.4f}    cost={:.2}".format(i, weight, bias, cost)
 
       return weight, bias, cost_history
 
 
-Model evaluation
+Kiểm định mô hình
 ----------------
 
-If our model is working, we should see our cost decrease after every iteration.
+Nếu mô hình của chúng ta thực sự hoạt động, ta sẽ thấy chi phí giảm dần sau mỗi vòng lặp.
 
-.. rubric:: Logging
+.. rubric:: Nhật ký huấn luyện
 
 ::
 
@@ -273,83 +290,90 @@ If our model is working, we should see our cost decrease after every iteration.
   iter=30    weight=.44    bias=.0219    cost=44.31
   iter=30    weight=.46    bias=.0249    cost=43.28
 
-.. rubric:: Visualizing
+.. rubric:: Đồ thị hàm dự đoán qua mỗi vòng lặp
 
 .. image:: images/linear_regression_line_1.png
+    :scale: 80
     :align: center
 
 .. image:: images/linear_regression_line_2.png
+    :scale: 80
     :align: center
 
 .. image:: images/linear_regression_line_3.png
+    :scale: 80
     :align: center
 
 .. image:: images/linear_regression_line_4.png
+    :scale: 80
     :align: center
 
 
-.. rubric:: Cost history
+.. rubric:: Chi phí qua mỗi vòng lặp
 
 .. image:: images/linear_regression_training_cost.png
+    :scale: 80
     :align: center
 
 
-Summary
--------
+Tổng kết
+--------
 
-By learning the best values for weight (.46) and bias (.25), we now have an equation that predicts future sales based on radio advertising investment.
+Sau khi học được giá trị trọng số :math:`(.46)` và hệ số điều chỉnh :math:`(.25)`, ta lúc này thu được một phương trình đơn giản giúp dự đoán doanh thu dựa trên mức đầu tư vào quảng cáo qua đài radio.
 
 .. math::
 
-  Sales = .46 Radio + .025
+  \text{Doanh thu} = .46 Radio + .025
 
-How would our model perform in the real world? I’ll let you think about it :)
-
-
-
-Multivariable regression
-========================
-
-Let’s say we are given `data <http://www-bcf.usc.edu/~gareth/ISL/Advertising.csv>`_ on TV, radio, and newspaper advertising spend for a list of companies, and our goal is to predict sales in terms of units sold.
-
-+----------+-------+-------+------+-------+
-| Company  | TV    | Radio | News | Units |
-+----------+-------+-------+------+-------+
-| Amazon   | 230.1 | 37.8  | 69.1 | 22.1  |
-+----------+-------+-------+------+-------+
-| Google   | 44.5  | 39.3  | 23.1 | 10.4  |
-+----------+-------+-------+------+-------+
-| Facebook | 17.2  | 45.9  | 34.7 | 18.3  |
-+----------+-------+-------+------+-------+
-| Apple    | 151.5 | 41.3  | 13.2 | 18.5  |
-+----------+-------+-------+------+-------+
+Liệu mô hình này có thể hoạt động tốt trong thực tế? Các bạn hãy thử suy nghĩ xem nhé :)
 
 
-Growing complexity
-------------------
-As the number of features grows, the complexity of our model increases and it becomes increasingly difficult to visualize, or even comprehend, our data.
+
+Hồi quy đa biến
+===============
+
+Giả sử ta được cung cấp `tập dữ liệu <http://www-bcf.usc.edu/~gareth/ISL/Advertising.csv>`_ gồm số tiền quảng cáo qua TV, radio, và báo của một loạt các công ty, và mục đích của chúng ta là dự đoán doanh thu tính bằng số sản phẩm bán ra.
+
++----------+-------+-------+------+-----------+
+| Công ty  | TV    | Radio | Báo  | Doanh thu |
++----------+-------+-------+------+-----------+
+| Amazon   | 230.1 | 37.8  | 69.1 | 22.1      |
++----------+-------+-------+------+-----------+
+| Google   | 44.5  | 39.3  | 23.1 | 10.4      |
++----------+-------+-------+------+-----------+
+| Facebook | 17.2  | 45.9  | 34.7 | 18.3      |
++----------+-------+-------+------+-----------+
+| Apple    | 151.5 | 41.3  | 13.2 | 18.5      |
++----------+-------+-------+------+-----------+
+
+Khi số đặc trưng tăng lên, độ phức tạp của mô hình cũng tăng theo, và càng lúc càng khó để vẽ đồ thị biểu diễn trực quan hay quan trọng hơn là để hiểu được dữ liệu.
 
 .. image:: images/linear_regression_3d_plane_mlr.png
     :align: center
 
-One solution is to break the data apart and compare 1-2 features at a time. In this example we explore how Radio and TV investment impacts Sales.
+Một trong những giải pháp là tách dữ liệu ra thành nhiều phần và chỉ so sánh 1-2 đặc trưng một lúc.
+Trong ví dụ này, ta sẽ khảo sát sự ảnh hưởng của việc đầu tư vào quảng cáo qua TV và Radio lên Doanh thu.
 
 
-Normalization
--------------
+Chuẩn hoá
+---------
 
-As the number of features grows, calculating gradient takes longer to compute. We can speed this up by "normalizing" our input data to ensure all values are within the same range. This is especially important for datasets with high standard deviations or differences in the ranges of the attributes. Our goal now will be to normalize our features so they are all in the range -1 to 1.
+Khi số đặc trưng tăng lên, việc tính toán gradient cũng tốn nhiều thời gian hơn.
+Ta có thể đẩy nhanh việc này bằng cách "chuẩn hoá" dữ liệu đầu vào để đảm bảo rằng tất cả các giá trị nằm trong cùng một khoảng.
+Quá trình này vô cùng quan trọng đối với những tập dữ liệu có độ lệch chuẩn lớn hoặc có sự khác nhau đáng kể trong khoảng giá trị của các đặc trưng.
+Mục tiêu của chúng ta lúc này là chuẩn hoá các đặc trưng sao cho tất cả chúng đều trong khoảng từ :math:`-1` đến :math:`1`.
 
 .. rubric:: Code
 
-::
+.. code-block:: md
 
-  For each feature column {
-      #1 Subtract the mean of the column (mean normalization)
-      #2 Divide by the range of the column (feature scaling)
+  Với mỗi cột đặc trưng {
+      #1 Trừ đi giá trị trung bình của cột (chuẩn hoá trung bình - mean normalization)
+      #2 Chia cho khoảng giá trị của cột (biến đổi tỉ lệ theo đặc trưng - feature scaling)
   }
 
-Our input is a 200 x 3 matrix containing TV, Radio, and Newspaper data. Our output is a normalized matrix of the same shape with all values between -1 and 1.
+Đầu vào của chúng ta là ma trận :math:`200 \times 3` bao gồm dữ liệu TV, Radio, và báo.
+Đầu ra sẽ là một ma trận được chuẩn hoá có cùng kích thước với tất cả các giá trị đều trong khoảng từ :math:`-1` đến :math:`1`.
 
 ::
 
@@ -358,36 +382,38 @@ Our input is a 200 x 3 matrix containing TV, Radio, and Newspaper data. Our outp
       features     -   (200, 3)
       features.T   -   (3, 200)
 
-      We transpose the input matrix, swapping
-      cols and rows to make vector math easier
+      Ta chuyển vị ma trận đầu vào (.T), hoán đổi hàng với cột
+      để giúp các hàm toán học thực hiện dễ dàng hơn.
       **
 
       for feature in features.T:
           fmean = np.mean(feature)
           frange = np.amax(feature) - np.amin(feature)
 
-          #Vector Subtraction
+          # Phép trừ vector
           feature -= fmean
 
-          #Vector Division
+          # Phép chia vector
           feature /= frange
 
       return features
 
 .. note::
 
-  **Matrix math**. Before we continue, it's important to understand basic :doc:`linear_algebra` concepts as well as numpy functions like `numpy.dot() <https://docs.scipy.org/doc/numpy/reference/generated/numpy.dot.html>`_.
+  **Phép toán trên ma trận**. Trước khi tiếp tục, bạn cần hiểu các khái niệm cơ bản của :doc:`đại số tuyến tính <linear_algebra>` cũng như một số hàm numpy như `numpy.dot() <https://docs.scipy.org/doc/numpy/reference/generated/numpy.dot.html>`_.
+
 
 .. _multiple_linear_regression_predict:
 
-Making predictions
-------------------
+Đưa ra dự đoán
+--------------
 
-Our predict function outputs an estimate of sales given our current weights (coefficients) and a company's TV, radio, and newspaper spend. Our model will try to identify weight values that most reduce our cost function.
+Hàm dự đoán có đầu ra là doanh thu ước lượng dựa theo các trọng số (hệ số) hiện có và khoản đầu tư của công ty vào quảng cáo qua TV, Radio, và báo.
+Mô hình của chúng ta sẽ cố gắng tìm ra các giá trị trọng số sao cho hàm chi phí là tối thiểu.
 
 .. math::
 
-  Sales = W_1 TV + W_2 Radio + W_3 Newspaper
+  \text{Doanh thu} = W_1 \text{TV} + W_2 \text{Radio} + W_3 \text{Báo}
 
 ::
 
@@ -401,8 +427,8 @@ Our predict function outputs an estimate of sales given our current weights (coe
     return predictions
 
 
-Initialize weights
-------------------
+Khởi tạo trọng số
+----------------
 
 ::
 
@@ -416,9 +442,12 @@ Initialize weights
   ])
 
 
-Cost function
--------------
-Now we need a cost function to audit how our model is performing. The math is the same, except we swap the :math:`mx + b` expression for :math:`W_1 x_1 + W_2 x_2 + W_3 x_3`. We also divide the expression by 2 to make derivative calculations simpler.
+Hàm chi phí
+-----------
+
+Ta cần một hàm chi phí để đánh giá xem mô hình đang chạy thế nào.
+Công thức toán thì vẫn vậy, ngoại trừ việc biểu thức :math:`mx + b` được đổi thành :math:`W_1 x_1 + W_2 x_2 + W_3 x_3`.
+Ta cũng chia biểu thức này thành 2 phần nhằm đơn giản hoá bước tính đạo hàm riêng.
 
 .. math::
 
@@ -431,23 +460,23 @@ Now we need a cost function to audit how our model is performing. The math is th
       features:(200,3)
       targets: (200,1)
       weights:(3,1)
-      returns average squared error among predictions
       **
       N = len(targets)
 
       predictions = predict(features, weights)
 
-      # Matrix math lets use do this without looping
+      # Các phép toán trên ma trận cho phép ta viết lệnh như sau
+      # mà không cần vòng lặp
       sq_error = (predictions - targets)**2
 
-      # Return average squared error among predictions
+      # Trả về trung bình bình phương sai số của tất cả các dự đoán
       return 1.0/(2*N) * sq_error.sum()
 
 
-Gradient descent
-----------------
+Hạ Gradient
+-----------
 
-Again using the :ref:`chain_rule` we can compute the gradient--a vector of partial derivatives describing the slope of the cost function for each weight.
+Một lần nữa bằng cách sử dụng :ref:`quy tắc chuỗi <chain_rule>`, ta có thể tính gradient--một vector của các đạo hàm riêng mô tả độ dốc của hàm chi phí với từng trọng số.
 
 .. math::
 
@@ -467,26 +496,26 @@ Again using the :ref:`chain_rule` we can compute the gradient--a vector of parti
       '''
       predictions = predict(features, weights)
 
-      #Extract our features
+      # Tách riêng từng đặc trưng
       x1 = features[:,0]
       x2 = features[:,1]
       x3 = features[:,2]
 
-      # Use matrix cross product (*) to simultaneously
-      # calculate the derivative for each weight
+      # Sử dụng phép nhân ma trận có hướng để tính đồng thời
+      # các đạo hàm riêng cho các trọng số
       d_w1 = -x1*(targets - predictions)
       d_w2 = -x2*(targets - predictions)
       d_w3 = -x3*(targets - predictions)
 
-      # Multiply the mean derivative by the learning rate
-      # and subtract from our weights (remember gradient points in direction of steepest ASCENT)
+      # Cập nhật các trọng số bằng cách trừ đi tích giá trị trung bình đạo hàm với tốc độ học
+      # (nhớ rằng gradient có hướng là hướng dốc nhất theo chiều ĐI LÊN)
       weights[0][0] -= (lr * np.mean(d_w1))
       weights[1][0] -= (lr * np.mean(d_w2))
       weights[2][0] -= (lr * np.mean(d_w3))
 
       return weights
 
-And that's it! Multivariate linear regression.
+Và đó là toàn bộ về Hồi quy tuyến tính đa biến.
 
 
 
