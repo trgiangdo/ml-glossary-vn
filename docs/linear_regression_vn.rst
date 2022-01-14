@@ -74,16 +74,15 @@ Hàm dự đoán của chúng ta có đầu ra là doanh thu ước lượng d�
   \text{Doanh thu} = \text{Trọng số} \times \text{Số tiền quảng cáo qua radio} + \text{Hệ số điều chỉnh}
 
 Trọng số
-  hệ số của biến độc lập Radio (Số tiền quảng cáo qua radio). Trong học máy, ta gọi các hệ số này là *trọng số*.
+  hệ số của biến độc lập chỉ Số tiền quảng cáo qua radio. Trong học máy, ta gọi các hệ số này là *trọng số*.
 
 Radio
-  the independent variable. In machine learning we call these variables *features*.
-  biến độc lập. Trong học máy, ta gọi các biến này là *đặc trưng (features)*.
+  biến độc lập. Trong học máy, ta gọi các biến này là các *đặc trưng (features)*.
 
 Hệ số điều chỉnh
-  giá trị mà đường tuyến tính giao với trục y. Trong học máy, ta có thể gọi giá trị này là *hệ số điều chỉnh (bias)*. Hệ số điều chỉnh giúp bù vào tất cả các dự đoán mà ta đưa ra.
+  giá trị mà đường tuyến tính giao với trục y. Trong học máy, ta có thể gọi giá trị này là *hệ số điều chỉnh (bias)*. Hệ số điều chỉnh được cộng vào tất cả các dự đoán mà ta đưa ra và sẽ được phân tích kỹ hơn sau.
 
-Thuật toán này của chúng ta sẽ cố để *học* giá trị đúng của Trọng số và Hệ số điều chỉnh.
+Thuật toán này của chúng ta sẽ cố để *học* giá trị tốt nhất của Trọng số và Hệ số điều chỉnh.
 Khi hoàn thành quá trình huấn luyện, phương trình của chúng ta sẽ có dạng xấp xỉ *đường thẳng phù hợp nhất* với dữ liệu.
 
 .. image:: images/linear_regression_line_intro.png
@@ -110,7 +109,7 @@ Mục tiêu của chúng ta là phải tối thiểu hoá MSE để cải thiệ
 
 .. rubric:: Công thức toán học
 
-Với hàm dạng tuyến tính đơn giản :math:`y = mx + b`, ta có thể tính MSE theo công thức:
+Với hàm tuyến tính đơn giản :math:`y = mx + b`, ta có thể tính MSE theo công thức:
 
 .. math::
 
@@ -136,7 +135,7 @@ Trong đó:
 Hạ Gradient (Gradient descent)
 ------------------------------
 
-Để tối thiểu hoá MSE, ta sử dụng :doc:`gradient_descent` để tính toán gradient của hàm chi phí.
+Để tối thiểu hoá MSE, ta sử dụng :doc:`thuật toán hạ gradient <gradient_descent>` để tính toán gradient của hàm chi phí.
 Thuật toán hạ gradient bao gồm bước tính sai số của dự đoán sinh bởi tập trọng số hiện có, sử dụng đạo hàm của hàm chi phí để tìm gradient (độ dốc của hàm chi phí với tập trọng số hiện có), và sau đó thay đổi trọng số theo hướng ngược lại với hướng của gradient.
 Việc thay đổi ngược lại với hướng của gradient là do gradient hướng theo chiều tăng lên của độ dốc thay vì chiều giảm, do đó ta cần đi theo hướng ngược lại để có thể giảm sai số.
 
@@ -351,7 +350,7 @@ Khi số đặc trưng tăng lên, độ phức tạp của mô hình cũng tăn
     :align: center
 
 Một trong những giải pháp là tách dữ liệu ra thành nhiều phần và chỉ so sánh 1-2 đặc trưng một lúc.
-Trong ví dụ này, ta sẽ khảo sát sự ảnh hưởng của việc đầu tư vào quảng cáo qua TV và Radio lên Doanh thu.
+Trong hình minh hoạ trên, ta sẽ khảo sát sự ảnh hưởng của việc đầu tư vào quảng cáo qua TV và Radio lên Doanh thu.
 
 
 Chuẩn hoá
