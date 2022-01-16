@@ -5,6 +5,7 @@ Tôi thực hiện dự án này trước hết là để cung cấp tài liệu
 
 Bản thuật ngữ này trước tiên tập trung vào dịch lại bản thuật ngữ tiếng Anh.
 Tiếp đó, cần thu thập thêm thuật ngữ từ nhiều nguồn khác để làm mới và mở rộng kho thuật ngữ này.
+Đường dẫn tới kho thuật ngữ: https://ml-glossary-vn.readthedocs.io/vi/latest/
 
 Rất mong nhận được sự hỗ trợ và đóng góp từ mọi người.
 
