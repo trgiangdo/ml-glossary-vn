@@ -197,7 +197,7 @@ Nếu :math:`y=0`, số hạng đầu tiên trong phép cộng bị khử.
 Nếu :math:`y=1`, số hạng thứ hai bị khử.
 Đối với cả hai trường hợp, ta chỉ tính toán đúng vế mà ta cần tính.
 
-.. rubric:: Vectorized cost function
+.. rubric:: Hàm chi phí được vector hoá
 
 .. math::
 	J(\theta) = \frac{1}{m} \cdot (-y^T log(h) - (1-y)^T log(1-h))
@@ -231,7 +231,6 @@ Tác giả Michael Neilson cũng có trình bày vấn đề này trong chương
 
   	s'(z) = s(z)(1 - s(z))
 
-Which leads to an equally beautiful and convenient cost function derivative:
 từ đây ta có thể suy ra công thức đạo hàm rất đẹp và dễ tính toán của hàm chi phí:
 
 
@@ -267,11 +266,9 @@ Chú ý rằng gradient này giống với gradient của :ref:`MSE <mse>`, khá
     :pyobject: update_weights
 
 
-.. Mapping probabilities to classes
 Ghép xác suất với các lớp
 -------------------------
 
-The final step is assign class labels (0 or 1) to our predicted probabilities.
 Bước cuối cùng là gán nhãn các danh mục (:math:`0` hoặc :math:`1`) cho các giá trị xác suất mô hình dự đoán.
 
 .. rubric:: Ranh giới quyết định
@@ -286,7 +283,7 @@ Bước cuối cùng là gán nhãn các danh mục (:math:`0` hoặc :math:`1`)
     :language: python
     :pyobject: classify
 
-.. rubric:: Example output
+.. rubric:: Ví dụ đầu ra
 
 ::
 
@@ -297,7 +294,6 @@ Bước cuối cùng là gán nhãn các danh mục (:math:`0` hoặc :math:`1`)
 Huấn luyện
 --------
 
-Our training code is the same as we used for :ref:`linear regression <simple_linear_regression_training>`.
 Code huấn luyện mô hình trong ví dụ này giống với đoạn code sử dụng trong :ref:`hồi quy tuyến tính <simple_linear_regression_training>`.
 
 .. literalinclude:: ../code/logistic_regression.py
@@ -367,7 +363,6 @@ Thuật toán
     * Dự đoán xác suất mà các quan sát thuộc danh mục đó.
 * :math:`\text{dự đoán} = max(\text{xác suất quan sát thuộc các danh mục})`
 
-For each sub-problem, we select one class (YES) and lump all the others into a second class (NO). Then we take the class with the highest predicted value.
 Với mỗi bài toán con, ta chọn một danh mục (:math:`1`) và coi tất cả các danh mục còn lại là một danh mục duy nhất (:math:`0`).
 Sau khi hoàn thành dự đoán xác suất của tất cả các bài toán con, ta phân loại quan sát vào danh mục với giá trị dự đoán cao nhất.
 
@@ -386,8 +381,7 @@ Hàm softmax chuẩn được định nghĩa bằng công thức sau.
    \text{for } & i=1,.,.,.,K \\
    \text{and } & z=z_1,.,.,.,z_K
 
-In words: we apply the standard exponential function to each element :math:`z_i` of the input vector :math:`z` and normalize these values by dividing by the sum of all these exponentials; this normalization ensures that the sum of the components of the output vector :math:`σ(z)` is 1. [9]_
-Nói cách khác: ta áp dụng hàm mũ tự nhiên lên từng phần tử :math:`z_i` của vector đầu vào :math:`z` và chuẩn hoá các giá trị này bằng cách chia cho tổng tất cả các hàm mũ; việc chuẩn hoá giúp đảm bảo rằng tổng của các phần tử của vector xác suất đầu ra :math:`\sigma(z)` bằng :math:`1`.
+Nói cách khác: ta áp dụng hàm mũ tự nhiên lên từng phần tử :math:`z_i` của vector đầu vào :math:`z` và chuẩn hoá các giá trị này bằng cách chia cho tổng tất cả các hàm mũ; việc chuẩn hoá giúp đảm bảo rằng tổng của các phần tử của vector xác suất đầu ra :math:`\sigma(z)` bằng :math:`1` [9]_.
 
 
 Ví dụ với Scikit-Learn
