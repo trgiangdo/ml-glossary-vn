@@ -54,6 +54,6 @@ Các biến thể (TODO)
 ===================
 
 
-.. rubric:: References
+.. rubric:: Tài liệu tham khảo
 
 .. [1] http://sebastianruder.com/optimizing-gradient-descent/
