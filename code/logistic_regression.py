@@ -1,41 +1,44 @@
-import math
-import numpy
-from activation_functions import sigmoid, sigmoid_prime
+import numpy as np
+from matplotlib import pyplot as plt
+from .activation_functions import sigmoid, sigmoid_prime
 
 
 def predict(features, weights):
-  '''
-  Returns 1D array of probabilities
-  that the class label == 1
-  '''
-  z = np.dot(features, weights)
-  return sigmoid(z)
+    '''
+    Trả về một mảng 1D là các xác suất
+    mà nhãn danh mục đó == 1
+    '''
+    z = np.dot(features, weights)
+    return sigmoid(z)
 
 
 def cost_function(features, labels, weights):
     '''
-    Using Mean Absolute Error
+    Sử dụng MAE (Mean Absolute Error)
 
     Features:(100,3)
     Labels: (100,1)
     Weights:(3,1)
-    Returns 1D matrix of predictions
-    Cost = (labels*log(predictions) + (1-labels)*log(1-predictions) ) / len(labels)
+
+    Trả về mảng 1D các dự đoán
+    cost = (labels*log(predictions) + (1-labels)*log(1-predictions) ) / len(labels)
     '''
+
+    # Số quan sát trong tập dữ liệu
     observations = len(labels)
 
     predictions = predict(features, weights)
 
-    #Take the error when label=1
+    # Tính sai số nếu nhãn = 1
     class1_cost = -labels*np.log(predictions)
 
-    #Take the error when label=0
+    # Tính sai số nếu nhãn = 1
     class2_cost = (1-labels)*np.log(1-predictions)
 
-    #Take the sum of both costs
+    # Tính tổng của cả 2 loại sai số
     cost = class1_cost - class2_cost
 
-    #Take the average cost
+    # Tính trung bình lỗi làm chi phí
     cost = cost.sum() / observations
 
     return cost
@@ -43,7 +46,7 @@ def cost_function(features, labels, weights):
 
 def update_weights(features, labels, weights, lr):
     '''
-    Vectorized Gradient Descent
+    Thuật toán Hạ Gradient được vector hoá
 
     Features:(200, 3)
     Labels: (200, 1)
@@ -51,23 +54,23 @@ def update_weights(features, labels, weights, lr):
     '''
     N = len(features)
 
-    #1 - Get Predictions
+    #1 - Dự đoán kết quả
     predictions = predict(features, weights)
 
-    #2 Transpose features from (200, 3) to (3, 200)
-    # So we can multiply w the (200,1)  cost matrix.
-    # Returns a (3,1) matrix holding 3 partial derivatives --
-    # one for each feature -- representing the aggregate
-    # slope of the cost function across all observations
+    #2 -  Chuyển vị ma trận đặc trưng từ kích thước (200, 3) về (3, 200)
+    # để ta có thể nhân với ma trận sai số (200,1).
+    # Trả về một ma trận (3,1) gồm có 3 đạo hàm riêng -
+    # mỗi đạo hàm cho một đặc trưng -- đại diện cho tổng
+    # độ nghiêng của hàm chi phí qua tất cả các quan sát.
     gradient = np.dot(features.T,  predictions - labels)
 
-    #3 Take the average cost derivative for each feature
+    #3 - Tính trung bình đạo hàm của hàm chi phí với mỗi đặc trưng
     gradient /= N
 
-    #4 - Multiply the gradient by our learning rate
+    #4 - Nhân gradient với tốc độ học
     gradient *= lr
 
-    #5 - Subtract from our weights to minimize cost
+    #5 - Cập nhật trọng số bằng cách trừ đi gradient để tối thiểu hoá chi phí
     weights -= gradient
 
     return weights
@@ -98,7 +101,7 @@ def train(features, labels, weights, lr, iters):
 
         # Log Progress
         if i % 1000 == 0:
-            print "iter: "+str(i) + " cost: "+str(cost)
+            print("iter: "+str(i) + " cost: "+str(cost))
 
     return weights, cost_history
 
