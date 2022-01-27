@@ -1,25 +1,25 @@
 .. _datasets:
 
-========
-Datasets
-========
+========================
+Tập dữ liệu - *Datasets*
+========================
 
-Public datasets in vision, nlp and more forked from caesar0301's `awesome datasets <https://github.com/caesar0301/awesome-public-datasets>`_ wiki.
+Các tập dữ liệu công khai trong thị giác máy tính, xử lý ngôn ngữ tự nhiên và nhiều bài toán khác trong học máy và học sâu, tham khảo từ wiki `awesome datasets <https://github.com/caesar0301/awesome-public-datasets>`_ của caesar0301.
 
 .. contents:: :local:
 
 
-Agriculture
+Nông nghiệp - *Agriculture*
 ------------
 * `U.S. Department of Agriculture's PLANTS Database <http://www.plants.usda.gov/dl_all.html>`_
 * `U.S. Department of Agriculture's Nutrient Database <https://www.ars.usda.gov/northeast-area/beltsville-md/beltsville-human-nutrition-research-center/nutrient-data-laboratory/docs/sr28-download-files/>`_
 
 
-Art
+Mỹ thuật - *Art*
 ---
 * `Google's Quick Draw Sketch Dataset <https://quickdraw.withgoogle.com/data>`_
 
-Biology
+Sinh học - *Biology*
 -------
 
 * `1000 Genomes <http://www.1000genomes.org/data>`_
@@ -66,7 +66,7 @@ Biology
 * `UniGene <http://www.ncbi.nlm.nih.gov/unigene>`_
 * `Universal Protein Resource (UnitProt) <http://www.uniprot.org/downloads>`_
 
-Chemistry/Materials Science
+Hoá học/Vật liệu - *Chemistry/Materials Science*
 ---------------------------
 
 * `NIST Computational Chemistry Comparison and Benchmark Database - SRD 101 <https://catalog.data.gov/dataset/nist-computational-chemistry-comparison-and-benchmark-database-srd-101>`_
@@ -74,7 +74,7 @@ Chemistry/Materials Science
 * `Citrination Public Datasets <https://citrination.com/datasets#public>`_
 * `Khazana Project <https://khazana.gatech.edu/module_search/search.php?m=2>`_
 
-Climate/Weather
+Thời tiết - *Climate/Weather*
 ---------------
 
 * `Actuaries Climate Index <http://actuariesclimateindex.org/data/>`_
@@ -96,7 +96,7 @@ Climate/Weather
 * `WU Historical Weather Worldwide <https://www.wunderground.com/history/index.html>`_
 
 
-Complex Networks
+Các mạng phức tạp - *Complex Networks*
 ----------------
 
 * `AMiner Citation Network Dataset <http://aminer.org/citation>`_
@@ -121,7 +121,7 @@ Complex Networks
 * `WSU Graph Database <http://www.eecs.wsu.edu/mgd/gdb.html>`_
 
 
-Computer Networks
+Mạng máy tính - *Computer Networks*
 -----------------
 
 * `3.5B Web Pages from CommonCrawl 2012 <http://www.bigdatanews.com/profiles/blogs/big-data-set-3-5-billion-web-pages-made-available-for-all-of-us>`_
@@ -138,7 +138,7 @@ Computer Networks
 * `UCSD Network Telescope, IPv4 /8 net <http://www.caida.org/projects/network_telescope/>`_
 
 
-Data Challenges
+Các cuộc thi dữ liệu - *Data Challenges*
 ---------------
 
 * `Bruteforce Database <https://github.com/duyetdev/bruteforce-database>`_
@@ -157,7 +157,7 @@ Data Challenges
 * `Yelp Dataset Challenge <http://www.yelp.com/dataset_challenge>`_
 
 
-Earth Science
+Khoa học Trái Đất - *Earth Science*
 -------------
 
 * `AQUASTAT - Global water resources and uses <http://www.fao.org/nr/water/aquastat/data/query/index.html?lang=en>`_
@@ -170,7 +170,7 @@ Earth Science
 * `USGS Earthquake Archives <http://earthquake.usgs.gov/earthquakes/search/>`_
 
 
-Economics
+Kinh tế - *Economics*
 ---------
 
 * `American Economic Association (AEA) <https://www.aeaweb.org/resources/data>`_
@@ -192,14 +192,14 @@ Economics
 * `UN Human Development Reports <http://hdr.undp.org/en>`_
 
 
-Education
+Giáo dục - *Education*
 ------------
 
 * `College Scorecard Data <https://collegescorecard.ed.gov/data/>`_
 * `Student Data from Free Code Camp <http://academictorrents.com/details/030b10dad0846b5aecc3905692890fb02404adbf>`_
 
 
-Energy
+Năng lượng - *Energy*
 ------
 
 * `AMPds <http://ampds.org/>`_
@@ -219,7 +219,7 @@ Energy
 * `WHITED <http://nilmworkshop.org/2016/proceedings/Poster_ID18.pdf>`_
 
 
-Finance
+Tài chính - *Finance*
 -------
 
 * `CBOE Futures Exchange <http://cfe.cboe.com/Data/>`_
@@ -234,7 +234,7 @@ Finance
 * `Yahoo Finance <http://finance.yahoo.com/>`_
 
 
-GIS
+Hệ thống Thông tin Địa lý (*GIS*)
 ---
 
 * `ArcGIS Open Data portal <http://opendata.arcgis.com/>`_
@@ -262,7 +262,7 @@ GIS
 * `World countries in multiple formats <https://github.com/mledoze/countries>`_
 
 
-Government
+Chính phủ - *Government*
 ----------
 
 * `A list of cities and countries contributed by community <https://github.com/caesar0301/awesome-public-datasets/blob/master/Government.rst>`_
@@ -270,7 +270,7 @@ Government
 * `OpenDataSoft's list of 1,600 open data <https://www.opendatasoft.com/a-comprehensive-list-of-all-open-data-portals-around-the-world/>`_
 
 
-Healthcare
+Y tế - *Healthcare*
 ----------
 
 * `EHDP Large Health Data Sets <http://www.ehdp.com/vitalnet/datasets.htm>`_
@@ -286,7 +286,7 @@ Healthcare
 * `World Health Organization Global Health Observatory <http://www.who.int/gho/en/>`_
 
 
-Image Processing
+Xử lý ảnh - *Image Processing*
 ----------------
 
 * `10k US Adult Faces Database <http://wilmabainbridge.com/facememorability2.html>`_
@@ -313,7 +313,7 @@ Image Processing
 * `YouTube Faces Database <http://www.cs.tau.ac.il/~wolf/ytfaces/>`_
 
 
-Machine Learning
+Học máy - *Machine Learning*
 ----------------
 
 * `Context-aware data sets from five domains <https://github.com/irecsys/CARSKit/tree/master/context-aware_data_sets>`_
@@ -337,7 +337,7 @@ Machine Learning
 * `Youtube 8m <https://research.google.com/youtube8m/download.html>`_
 
 
-Museums
+Bảo tàng - *Museums*
 -------
 
 * `Canada Science and Technology Museums Corporation's Open Data <http://techno-science.ca/en/data.php>`_
@@ -348,13 +348,13 @@ Museums
 * `Tate Collection metadata <https://github.com/tategallery/collection>`_
 * `The Getty vocabularies <http://vocab.getty.edu>`_
 
-Music
+Âm nhạc - *Music*
 -----
 
 * `Nottingham Folk Songs <https://github.com/jukedeck/nottingham-dataset>`_
 * `Bach 10 <http://music.cs.northwestern.edu/data/Bach10_Dataset_Description.pdf>`_
 
-Natural Language
+Ngôn ngữ tự nhiên - *Natural Language*
 ----------------
 
 * `Automatic Keyphrase Extracttion <https://github.com/snkim/AutomaticKeyphraseExtraction/>`_
@@ -386,7 +386,7 @@ Natural Language
 * `WordNet databases and tools <http://wordnet.princeton.edu/wordnet/download/>`_
 
 
-Neuroscience
+Khoa học thần kinh - *Neuroscience*
 -------------
 
 * `Allen Institute Datasets <http://www.brain-map.org/>`_
@@ -405,7 +405,7 @@ Neuroscience
 * `Study Forrest <http://studyforrest.org>`_
 
 
-Physics
+Vật lý - *Physics*
 -------
 
 * `CERN Open Data Portal <http://opendata.cern.ch/>`_
@@ -415,13 +415,13 @@ Physics
 * `Sloan Digital Sky Survey (SDSS) - Mapping the Universe <http://www.sdss.org/>`_
 
 
-Psychology/Cognition
+Tâm lý học/Khoa học nhận thức - *Psychology/Cognition*
 --------------------
 
 * `OSU Cognitive Modeling Repository Datasets <http://www.cmr.osu.edu/browse/datasets>`_
 
 
-Public Domains
+Tên miền công khai - *Public Domains*
 --------------
 
 * `Amazon <http://aws.amazon.com/datasets/>`_
@@ -451,7 +451,7 @@ Public Domains
 * `Yahoo Webscope <http://webscope.sandbox.yahoo.com/catalog.php>`_
 
 
-Search Engines
+Công cụ tìm kiếm - *Search Engines*
 --------------
 
 * `Academic Torrents of data sharing from UMB <http://academictorrents.com/>`_
@@ -467,7 +467,7 @@ Search Engines
 * `Zenodo - An open dependable home for the long-tail of science <https://zenodo.org/collection/datasets>`_
 
 
-Social Networks
+Mạng xã hội - *Social Networks*
 ---------------
 
 * `72 hours #gamergate Twitter Scrape <http://waxy.org/random/misc/gamergate_tweets.csv>`_
@@ -496,7 +496,7 @@ Social Networks
 * `Youtube Video Social Graph in 2007,2008 <http://netsg.cs.sfu.ca/youtubedata/>`_
 
 
-Social Sciences
+Khoa học xã hội - *Social Sciences*
 ---------------
 
 * `ACLED (Armed Conflict Location & Event Data Project) <http://www.acleddata.com/>`_
@@ -542,12 +542,12 @@ Social Sciences
 * `WorldPop project - Worldwide human population distributions <http://www.worldpop.org.uk/data/get_data/>`_
 
 
-Software
+Phần mềm - *Software*
 --------
 
 * `FLOSSmole data about free, libre, and open source software development <http://flossdata.syr.edu/data/>`_
 
-Sports
+Thể thao - *Sports*
 ------
 
 * `Basketball (NBA/NCAA/Euro) Player Database and Statistics <http://www.draftexpress.com/stats.php>`_
@@ -561,7 +561,7 @@ Sports
 * `Tennis database of rankings, results, and stats for ATP <https://github.com/JeffSackmann/tennis_atp>`_, `WTA <https://github.com/JeffSackmann/tennis_wta>`_, `Grand Slams <https://github.com/JeffSackmann/tennis_slam_pointbypoint>`_ and `Match Charting Project <https://github.com/JeffSackmann/tennis_MatchChartingProject>`_
 
 
-Time Series
+Chuỗi thời gian - *Time Series*
 -----------
 
 * `Databanks International Cross National Time Series Data Archive <http://www.cntsdata.com>`_
@@ -571,7 +571,7 @@ Time Series
 * `UC Riverside Time Series Dataset <http://www.cs.ucr.edu/~eamonn/time_series_data/>`_
 
 
-Transportation
+Vận tải - *Transportation*
 --------------
 
 * `Airlines OD Data 1987-2008 <http://stat-computing.org/dataexpo/2009/the-data.html>`_
@@ -597,4 +597,3 @@ Transportation
 * `U.S. Bureau of Transportation Statistics (BTS) <http://www.rita.dot.gov/bts/>`_
 * `U.S. Domestic Flights 1990 to 2009 <http://academictorrents.com/details/a2ccf94bbb4af222bf8e69dad60a68a29f310d9a>`_
 * `U.S. Freight Analysis Framework since 2007 <http://ops.fhwa.dot.gov/freight/freight_analysis/faf/index.htm>`_
-
