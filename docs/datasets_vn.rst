@@ -423,12 +423,6 @@ Giáo dục - *Education*
 * `Student Data from Free Code Camp <http://academictorrents.com/details/030b10dad0846b5aecc3905692890fb02404adbf>`_
 
 
-Mỹ thuật - *Art*
-----------------
-
-* `Google's Quick Draw Sketch Dataset <https://quickdraw.withgoogle.com/data>`_
-
-
 Bảo tàng - *Museums*
 --------------------
 
@@ -445,6 +439,12 @@ Bảo tàng - *Museums*
 
 * `Nottingham Folk Songs <https://github.com/jukedeck/nottingham-dataset>`_
 * `Bach 10 <http://music.cs.northwestern.edu/data/Bach10_Dataset_Description.pdf>`_
+
+
+Mỹ thuật - *Art*
+----------------
+
+* `Google's Quick Draw Sketch Dataset <https://quickdraw.withgoogle.com/data>`_
 
 
 Năng lượng - *Energy*
