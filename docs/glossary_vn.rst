@@ -4,24 +4,25 @@
 Thuật ngữ cơ bản
 ===============
 
-Định nghĩa của một số thuật ngữ cơ bản phổ biến trong học máy.
+Định nghĩa của một số thuật ngữ cơ bản được sử dụng phổ biến trong các tài liệu học máy.
 
 
 .. _glossary_accuracy:
 
 Độ chính xác - *Accuracy*
-    Tỉ lệ phần trăm mà mô hình đưa ra dự đoán đúng.
+    Là tỉ lệ phần trăm mà mô hình đưa ra dự đoán đúng.
 
 .. _glossary_algorithm:
 
 Thuật toán - *Algorithm*
-    Một phương pháp, phương thức, hay một tập hợp các hướng dẫn được sử dụng để tạo ra một :ref:`mô hình <glossary_model>` học máy.
-    Ví dụ có thể kể đến các thuật toán hồi quy tuyến tính, cây quyết định (*decision trees*), máy vector hỗ trợ (*support vector machines*), và các thuật toán dựa trên mạng nơ-ron.
+    Là một phương pháp, phương thức, hay một tập hợp các lệnh được sử dụng để tạo ra một :ref:`mô hình <glossary_model>` học máy.
+
+    Ví dụ có thể kể đến các thuật toán hồi quy tuyến tính, cây quyết định (*decision trees*), máy vector hỗ trợ (*support vector machines*), và các thuật toán dựa trên kiến trúc mạng nơ-ron.
 
 .. _glossary_attribute:
 
 Thuộc tính - *Attribute*
-    Một tính chất được sử dụng trong mô tả một quan sát (ví dụ như màu sắc, kích cỡ, cân nặng).
+    Là một tính chất được sử dụng để mô tả một quan sát (ví dụ như màu sắc, kích cỡ, cân nặng).
     Trong các cơ sở dữ liệu dạng bảng tính (ví dụ như Excel, CSV, ...), các thuộc tính chính là tiêu đề của các cột.
 
 .. _glossary_bias_metric:
@@ -62,6 +63,7 @@ Phân loại - *Classification*
 
 Ngưỡng phân loại - *Classification Threshold*
     Là giá trị xác suất thấp nhất mà ta có thể tự tin khẳng định rằng quan sát đó là dương tính.
+
     Ví dụ, nếu xác suất dự đoán bệnh tiểu đường :math:`> 50\%`, trả về kết quả dương tính (True), ngược lại trả về kết quả âm tính.
 
 .. _glossary_clustering:
@@ -91,7 +93,7 @@ Biến liên tục - *Continuous Variables*
 .. _glossary_convergence:
 
 Hội tụ - *Convergence*
-    Là một trạng thái trong huấn luyện mô hình học máy, xảy ra khi :ref:`mất mát <glossary_loss>` giảm rất ít sau mỗi vòng lặp.
+    Là một trạng thái trong huấn luyện mô hình học máy, xảy ra khi :ref:`mất mát <glossary_loss>` giảm rất ít hoặc không giảm sau mỗi vòng lặp huấn luyện.
 
 .. _glossary_cost:
 
@@ -106,6 +108,7 @@ Chi phí - *Cost*
 Suy diễn logic - *Deduction*
     Là một phương pháp giải quyết vấn đề hay trả lời câu hỏi từ trên xuống (*top-down*).
     Đây là một kỹ thuật logic bắt đầu với một giả thuyết và kiểm tra giả thuyết đó thông qua các quan sát thực tế để dẫn tới kết luận cuối cùng.
+
     Ví dụ, ta nghi ngờ giả thuyết X, nhưng ta cần phải kiểm chứng giả thuyết của ta trước khi đưa ra bất cứ kết luận nào.
 
 .. _glossary_deep_learning:
@@ -134,6 +137,7 @@ Epoch
 
 Ngoại suy - *Extrapolation*
     Mô tả việc đưa ra dữ đoán cho dữ liệu ngoài phạm vi bao quát của tập dữ liệu đã học.
+
     Ví dụ, con chó của tôi biết sủa, vì vậy tất cả các con chó khác đều biết sủa.
 
     Trong học máy, mô hình thường vướng mắc phải nhiều vấn đề khi ta cố ngoại suy dữ liệu nằm ngoài tập huấn luyện.
@@ -198,6 +202,7 @@ Siêu tham số - *Hyperparameters*
 Quy nạp - *Induction*
     Là một phương pháp giải quyết vấn đề hay trả lời câu hỏi từ dưới lên (*bottom-up*).
     Đây là một kỹ thuật logic đi từ các quan sát để suy ra các luận đề.
+
     Ví dụ, nếu ta liên tục bắt gặp quan sát X, thì ta có thể suy luận rằng Y phải đúng.
 
 .. _glossary_instance:
@@ -210,12 +215,14 @@ Mẫu - *Instance*
 
 Nhãn - *Label*
     Trong các bài toán :ref:`học có giám sát <glossary_supervised_learning>`, nhãn của một :ref:`quan sát <glossary_observation>` là giá trị mà mô hình dự đoán trả về dựa trên các đặc trưng ở đầu vào.
+
     Ví dụ, với mô hình được huấn luyện để phân loại hoa thành các loài khác nhau, các đặc trưng đầu vào có thể bao gồm số cánh hoa, độ dài và độ rộng cánh hoá, trong khi nhãn sẽ là tên của loài hoa đó.
 
 .. _glossary_learning_rate:
 
 Tốc độ học - *Learning Rate*
     Là kích thước các bước cập nhật trọng số mà thuật toán tối ưu (ví dụ như :doc:`gradient_descent`) thực hiện trong mỗi bước lặp.
+
     Với tốc độ học cao, ta có thể bước xa hơn với mỗi bước di chuyển, tuy nhiên nếu cao quá sẽ có nguy cơ sẽ bước lệch khỏi điểm thấp nhất do độ dốc của hàm chi phí thay đổi liên tục.
     Với một tốc độ học thấp, ta có thể tự tin di chuyển theo chiều âm của gradient do ta liên tục tính lại giá trị này. Tốc độ học thấp sẽ cho độ chính xác tốt hơn, tuy nhiên việc tính gradient nhiều lần rất tốn thời gian, do đó ta sẽ cần nhiều thời gian hơn để bước được tới điểm cực tiểu.
 
@@ -253,6 +260,7 @@ Mạng nơ-ron - *Neural Networks*
 
 Chuẩn hoá - *Normalization*
     Trong học máy, chuẩn hoá là một bước trong khâu chuẩn bị dữ liệu với mục đích biến đổi các đặc trưng mang giá trị số về cùng một khoảng giá trị chung mà vẫn giữ nguyên dạng phân phối chung và tỉ lệ của dữ liệu gốc, không làm hao tổn thông tin trong một thuộc tính.
+
     Đây là một bước bắt buộc trong nhiều thuật toán học máy, hỗ trợ việc kết hợp các đặc trưng có tỉ lệ chênh lệch lớn để đưa ra dự đoán chính xác.
 
 .. _glossary_noise:
@@ -263,7 +271,7 @@ Nhiễu - *Noise*
 .. _glossary_null_accuracy:
 
 Độ chính xác gốc - *Null Accuracy*
-    Là độ chính xác cơ sở thu được khi mô hình luôn dự đoán danh mục có tần suất cao nhất ("Danh mục B có tần suất xuất hiện cao nhất trong tập dữ liệu, vì vậy đối với mọi quan sát khác mô hình luôn dự đoán là B").
+    Là độ chính xác cơ sở thu được khi mô hình luôn đưa ra dự đoán là danh mục có tần suất cao nhất ("Danh mục B có tần suất xuất hiện cao nhất trong tập dữ liệu, vì vậy đối với mọi quan sát khác mô hình luôn dự đoán là B").
 
 .. _glossary_observation:
 
@@ -275,12 +283,14 @@ Quan sát - *Observation*
 
 Dữ liệu ngoại lai - *Outlier*
     Là một quan sát có chênh lệch đáng kể so với các quan sát còn lại trong tập dữ liệu.
+
     Ví dụ, trong bài toán dự đoán nhà dựa trên diện tích sàn, hầu hết các căn nhà đều có giá trung bình 20 triệu VND / m\ :sup:`2`, tuy nhiên lại có 1 căn nhà vì nhiều lý do có giá lên tới 50 triệu VND / m\ :sup:`2`, ta gọi dữ liệu căn nhà đó là dữ liệu ngoại lai.
 
 .. _glossary_overfitting:
 
 Quá khớp - *Overfitting*
     Là hiện tượng xảy ra khi mô hình học dữ liệu huấn luyện quá sâu đến mức mô hình hoá cả các chi tiết thừa thãi và :ref:`nhiễu <glossary_noise>` trong tập huấn luyện.
+
     Thông thường, ta có thể nhận ra mô hình bị quá khớp khi hiệu năng của nó rất tốt trên tập huấn luyện, nhưng lại kém hơn nhiều khi thực hiện dự đoán trên tập kiểm định / kiểm tra (hoặc dữ liệu mới).
 
 .. _glossary_parameters:
@@ -300,6 +310,7 @@ Tham số - *Parameters*
 Độ chuẩn xác - *Precision*
     Khác với :ref:`độ chính xác <glossary_accuracy>`, trong ngữ cảnh bài toán phân loại nhị phân (Có/Không), độ chuẩn xác đo hiệu năng phân loại các quan sát dương tỉnh của mô hình (ngược lại so với :ref:`độ đặc hiệu <glossary_specificity>`).
     Nói cách khác, khi quan sát đó là dương tính trong thực tế, thì tỉ lệ dự đoán đúng là bao nhiêu?
+
     Độ chuẩn xác :math:`P` được tính theo công thức
 
     .. math::
@@ -315,6 +326,7 @@ Tham số - *Parameters*
 Độ nhạy - *Recall*
     Trong ngữ cảnh bài toán phân loại nhị phân (Có/Không), độ nhạy đo "sự nhạy bén" của mô hình phân loại trong việc phát hiện ra các quan sát dương tính.
     Nói cách khác, trên tổng số tất cả các quan sát dương tính trong tập dữ liệu, mô hình phân loại đúng được bao nhiêu quan sát là dương tính.
+
     Độ nhạy :math:`R` được tính theo công thức
 
     .. math::
@@ -362,6 +374,7 @@ Học tăng cường - *Reinforcement Learning*
 Đương cong đặc trưng hoạt động của bộ thu - *Receiver Operating Characteristic (ROC) Curve*
     Là một đồ thị biểu diễu :ref:`tỉ lệ dương tính đúng <glossary_true_positive_thật>`, hay :ref:`độ nhạy <glossary_recall>`, trên :ref:`tỉ lệ dương tính giả <glossary_false_positive_rate>` với mọi :ref:`ngưỡng phân loại <glossary_classification_threshold>`.
     Đồ thị này được sử dụng để đánh giá hiệu năng phân loại của mô hình với các ngưỡng phân loại khác nhau.
+
     Phần diện tích phía dưới đường cong ROC có thể được coi là xác suất mà mô hình phân biệt đúng một quan sát ngẫu nhiên dương tính (như "có u não") và một quan sát ngẫu nhiên âm tính (như "không có u não").
 
 .. _glossary_segmentation:
@@ -375,6 +388,7 @@ Phân vùng - *Segmentation*
 Độ đặc hiệu - *Specificity*
     Trong ngữ cảnh bài toán phân loại nhị phân (Có/Không), độ đặc hiệu đo hiệu năng phân loại các quan sát âm tỉnh của mô hình (ngược lại so với :ref:`độ chuẩn xác <glossary_precision>`).
     Nói cách khác, khi quan sát đó là âm tính trong thực tế, thì tỉ lệ dự đoán đúng là bao nhiêu?
+
     Độ đặc hiệu :math:`S` được tính theo công thức
 
     .. math::
@@ -441,6 +455,7 @@ Kém khớp - *Underfitting*
 
 Định lý xấp xỉ phổ quát - *Universal Approximation Theorem*
     Nói một cách đơn giản, định lý này phát biểu rằng một mạng nơ-ron với chỉ 1 tầng ẩn có thể xấp xỉ bất cứ hàm liên tục nào nhưng chỉ với đầu vào trong 1 khoảng giá trị nhất định.
+
     Ví dụ, nếu ta huấn luyện một mô hình với đầu vào trong khoảng từ -2 đến 2, mô hình sẽ hoạt động tốt với đầu vào trong cùng khoảng giá trị đó, nhưng ta không thể mong rằng mô hình có thể khái quát hoá với các đầu vào có khoảng giá trị khác mà không huấn luyện lại mô hình, hoặc thêm nơ-ron ẩn vào mạng.
 
 .. _glossary_unsupervised_learning:
