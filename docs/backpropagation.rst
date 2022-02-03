@@ -1,94 +1,101 @@
 .. _backpropagation:
 
-===============
-Backpropagation
-===============
+====================================
+Lan truyền ngược - *Backpropagation*
+====================================
 
 .. contents:: :local:
 
-The goals of backpropagation are straightforward: adjust each weight in the network in proportion to how much it contributes to overall error. If we iteratively reduce each weight's error, eventually we’ll have a series of weights that produce good predictions.
+Mục đích của quá trình lan truyền ngược khá hiển nhiên: điều chỉnh hay cập nhật trọng số của mạng tuỳ vào ảnh hưởng của nó tới tổng lỗi dự đoán của mạng.
+Nếu ta có thể liên tục làm giảm lỗi dự đoán của từng trọng số, cuồi cùng ta sẽ thu được một tập trọng số mà có thể đưa ra dự đoán đủ tốt.
 
 
-Chain rule refresher
-====================
+Nhắc lại về Quy tắc chuỗi - *Chain rule*
+========================================
 
-As seen above, foward propagation can be viewed as a long series of nested equations. If you think of feed forward this way, then backpropagation is merely an application of :ref:`chain_rule` to find the :ref:`derivative` of cost with respect to any variable in the nested equation. Given a forward propagation function:
+Như đã đề cập trong :doc:`forwardpropagation_vn`, quá trình lan truyền xuôi có thể được coi là một chuỗi các hàm số lồng nhau.
+Theo cách hiểu này, lan truyền ngược (*backpropagation*) gần như là một phương pháp ứng dụng :ref:`chain_rule` để tìm :ref:`derivative` của hàm chi phí theo bất cứ biến số (hay các trọng số) nào trong các hàm số lồng nhau đó.
+Cho hàm lan truyền xuôi có dạng:
 
 .. math::
 
   f(x) = A(B(C(x)))
 
-A, B, and C are activation functions at different layers. Using the chain rule we easily calculate the derivative of :math:`f(x)` with respect to :math:`x`:
+A, B, và C là các hàm kích hoạt tại các tầng khác nhau trong mạng. Sử dụng quy tắc chuỗi, ta có thể dễ dàng tính được đạo hàm của :math:`f(x)` theo :math:`x`:
 
 .. math::
 
   f'(x) = f'(A) \cdot A'(B) \cdot B'(C) \cdot C'(x)
 
-How about the derivative with respect to B? To find the derivative with respect to B you can pretend :math:`B(C(x))` is a constant, replace it with a placeholder variable B, and proceed to find the derivative normally with respect to B.
+Vậy còn đạo hàm theo hàm :math:`B` thì sao?
+Để tính đạo hàm này, ta có thể coi :math:`B(C(x))` là hằng số, thay bằng biến tạm thời :math:`B`, và tính đạo hàm của :math:`f(x)` theo biến :math:`B`.
 
 .. math::
 
   f'(B) = f'(A) \cdot A'(B)
 
-This simple technique extends to any variable within a function and allows us to precisely pinpoint the exact impact each variable has on the total output.
+Phương pháp đơn giản này giúp mở rộng quy tắc chuỗi để ta có thể tính được đạo hàm theo bất cứ biến nào trong hàm hợp, cho phép ta xác định chính xác ảnh hưởng của từng biến lên đầu ra dự đoán của mạng.
 
 
+Áp dụng quy tắc chuỗi
+=====================
 
-Applying the chain rule
-=======================
-
-Let's use the chain rule to calculate the derivative of cost with respect to any weight in the network. The chain rule will help us identify how much each weight contributes to our overall error and the direction to update each weight to reduce our error. Here are the equations we need to make a prediction and calculate total error, or cost:
+Hãy cùng sử dụng quy tắc chuỗi để tính đạo hàm của hàm chi phí theo bất kỳ trọng số nào trong mạng.
+Quy tắc chuỗi giúp ta xác định ảnh hưởng của từng trọng số lên lỗi dự đoán và hướng cập nhật cho từng trọng số để giảm lỗi.
+Các phương trình sau là các phương trình được sử dụng trong quá trình dự đoán và xác định lỗi dự đoán của mạng.
 
 .. image:: images/backprop_ff_equations.png
     :align: center
 
-Given a network consisting of a single neuron, total cost could be calculated as:
+Cho một mạng chỉ có 1 nơ-ron duy nhất, tổng chi phí của mạng có thể được tính bằng:
 
 .. math::
 
-  Cost = C(R(Z(X W)))
+  \text{Chi phí} = C(R(Z(X W)))
 
-Using the chain rule we can easily find the derivative of Cost with respect to weight W.
+Sử dụng quy tắc chuỗi, ta có thể dễ dàng tính đạo hàm của chi phí theo trọng số :math:`W` bằng:
 
 .. math::
 
   C'(W) &= C'(R) \cdot R'(Z) \cdot Z'(W) \\
         &= (\hat{y} -y) \cdot R'(Z) \cdot X
 
-Now that we have an equation to calculate the derivative of cost with respect to any weight, let's go back to our toy neural network example above
+Giờ quay lại với trường hợp mạng nơ-ron đơn giản 1 tầng ẩn.
 
 .. image:: images/simple_nn_diagram_zo_zh_defined.png
     :align: center
 
-What is the derivative of cost with respect to :math:`W_o`?
+Đạo hàm của hàm chi phí theo :math:`W_o` bằng
 
 .. math::
 
   C'(W_O) &= C'(\hat{y}) \cdot \hat{y}'(Z_O) \cdot Z_O'(W_O) \\
           &= (\hat{y} - y) \cdot R'(Z_O) \cdot H
 
-And how about with respect to :math:`W_h`? To find out we just keep going further back in our function applying the chain rule recursively until we get to the function that has the Wh term.
+Còn đạo hàm theo :math:`W_h` thì sao?
+Để tính đạo hàm này, ta tiếp tục áp dụng quy tắc chuỗi cho tới khi ta thu được đạo hàm theo biến :math:`Wh`.
 
 .. math::
 
   C'(W_h) &= C'(\hat{y}) \cdot O'(Z_o) \cdot Z_o'(H) \cdot H'(Z_h) \cdot Z_h'(W_h) \\
           &= (\hat{y} - y) \cdot R'(Z_o) \cdot W_o \cdot R'(Z_h) \cdot X
 
-And just for fun, what if our network had 10 hidden layers. What is the derivative of cost for the first weight :math:`w_1`?
+Hãy thử 1 ví dụ khá thú vị với mạng nơ-ron 10 tầng ẩn. Đạo hàm của hàm chi phí với trọng số đầu tiên :math:`w_1` sẽ có dạng thế nào?
 
 .. math::
 
   C'(w_1) = \frac{dC}{d\hat{y}} \cdot \frac{d\hat{y}}{dZ_{11}} \cdot \frac{dZ_{11}}{dH_{10}} \cdot \\ \frac{dH_{10}}{dZ_{10}} \cdot \frac{dZ_{10}}{dH_9} \cdot \frac{dH_9}{dZ_9} \cdot \frac{dZ_9}{dH_8} \cdot \frac{dH_8}{dZ_8} \cdot \frac{dZ_8}{dH_7} \cdot \frac{dH_7}{dZ_7} \cdot \\ \frac{dZ_7}{dH_6} \cdot \frac{dH_6}{dZ_6} \cdot \frac{dZ_6}{dH_5} \cdot \frac{dH_5}{dZ_5} \cdot \frac{dZ_5}{dH_4} \cdot \frac{dH_4}{dZ_4} \cdot \frac{dZ_4}{dH_3} \cdot \\ \frac{dH_3}{dZ_3} \cdot \frac{dZ_3}{dH_2} \cdot \frac{dH_2}{dZ_2} \cdot \frac{dZ_2}{dH_1} \cdot \frac{dH_1}{dZ_1} \cdot \frac{dZ_1}{dW_1}
 
-See the pattern? The number of calculations required to compute cost derivatives increases as our network grows deeper. Notice also the redundancy in our derivative calculations. Each layer's cost derivative appends two new terms to the terms that have already been calculated by the layers above it. What if there was a way to save our work somehow and avoid these duplicate calculations?
+Số lượng phép tính cần thực hiện để tính đạo hàm tăng lên theo chiều sâu của mạng.
+Tuy nhiên chú ý rằng phép tính này bị dư thừa rất nhiều.
+Đạo hàm hàm chi phí tại mỗi tầng thì sẽ có thêm 2 số hạng so với biểu thức tính đạo hàm mà đã được tính bởi tầng trước nó.
+Vậy thì liệu có cách nào có thể lưu lại giá trị tính bởi tầng trước để tránh bị lặp lại khi thực hiện đạo hàm cho tầng đằng sau không?
 
 
-
-Saving work with memoization
-============================
+Lưu lại kết quả đạo hàm tầng trước
+=================================
 
 Memoization is a computer science term which simply means: don’t recompute the same thing over and over. In memoization we store previously computed results to avoid recalculating the same function. It's handy for speeding up recursive functions of which backpropagation is one. Notice the pattern in the derivative equations below.
-
 
 .. image:: images/memoization.png
     :align: center
@@ -178,7 +185,6 @@ Code example
     :lines: 17-41
 
 
+.. rubric:: Tài liệu tham khảo
 
-.. rubric:: References
-
-.. [1] Example
+.. [1] ...
