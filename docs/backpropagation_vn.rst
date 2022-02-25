@@ -44,8 +44,15 @@ Hãy cùng sử dụng quy tắc chuỗi để tính đạo hàm của hàm chi 
 Quy tắc chuỗi giúp ta xác định ảnh hưởng của từng trọng số lên lỗi dự đoán và hướng cập nhật cho từng trọng số để giảm lỗi.
 Các phương trình sau là các phương trình được sử dụng trong quá trình dự đoán và xác định lỗi dự đoán của mạng.
 
-.. image:: images/backprop_ff_equations.png
-    :align: center
++-----------------------+-----------------------------------------+---------------------------------------------------------------------------------------+
+| Hàm số                | Công thức                               | Đạo hàm                                                                               |
++=======================+=========================================+=======================================================================================+
+| Đánh trọng số đầu vào | :math:`Z = XW`                          | :math:`\begin{align} Z'(X) & = W \\Z'(W) & = X\end{align}`                            |
++-----------------------+-----------------------------------------+---------------------------------------------------------------------------------------+
+| Kích hoạt ReLU        | :math:`R = \max(0, Z)`                  | :math:`R'(Z) = \begin{cases} 0 \text{ khi } Z<0 \\ 1 \text{ khi } Z>0 \\ \end{cases}` |
++-----------------------+-----------------------------------------+---------------------------------------------------------------------------------------+
+| Hàm chi phí           | :math:`C = \frac{1}{2} (\hat{y} - y)^2` | :math:`C'(\hat{y}) = \hat{y} - y`                                                     |
++-----------------------+-----------------------------------------+---------------------------------------------------------------------------------------+
 
 Cho một mạng chỉ có 1 nơ-ron duy nhất, tổng chi phí của mạng có thể được tính bằng:
 
@@ -64,6 +71,9 @@ Giờ quay lại với trường hợp mạng nơ-ron đơn giản 1 tầng ẩn
 
 .. image:: images/simple_nn_diagram_zo_zh_defined.png
     :align: center
+    :height: 262 px
+    :width: 804 px
+    :scale: 65 %
 
 Đạo hàm của hàm chi phí theo :math:`W_o` bằng
 
@@ -96,6 +106,7 @@ Chú ý rằng các công thức tính đạo hàm cho từng tầng có dạng 
 
 .. image:: images/memoization.png
     :align: center
+    :scale: 70 %
 
 Mỗi tầng này đều có chung các thành phần đạo hàm.
 Do vậy, thay vì viết dạng đầy đủ công thức tính đạo hàm cho từng trọng số, ta có thể lưu lại kết quả của biểu thức đạo hàm của tầng trước đó trong quá trình "lan truyền ngược" theo kiến trúc mạng.
@@ -163,7 +174,7 @@ Do đó để tính đạo hàm của chi phí theo bất kỳ trọng số nào
 
 .. math::
 
-  C'(w) = CurrentLayerError \cdot CurrentLayerInput
+  C'(w) = \text{Lỗi tầng hiện tại} \cdot \text{Đầu vào tầng hiện tại}
 
 .. note::
 
@@ -173,13 +184,21 @@ Do đó để tính đạo hàm của chi phí theo bất kỳ trọng số nào
 
 Dưới đây là 3 phương trình mà cùng nhau tạo thành nền tảng của kỹ thuật lan truyền ngược.
 
-.. image:: images/backprop_final_3_deriv_equations.png
-    :align: center
++-------------------------------+-------------------------------------------+
+| Lỗi tầng đầu ra               | :math:`E_o = (O - y) \cdot R'(Z_o)`       |
++-------------------------------+-------------------------------------------+
+| Lỗi tầng ẩn                   | :math:`E_h = E_o \cdot W_o \cdot R'(Z_h)` |
++-------------------------------+-------------------------------------------+
+| Đạo hàm chi phí theo trọng số | :math:`=` Lỗi tầng :math:`\cdot` Đầu vào  |
++-------------------------------+-------------------------------------------+
 
 Dưới đây là một ví dụ minh hoá quá trình trên sử dụng mô hình mạng nơ-ron đơn giản.
 
 .. image:: images/backprop_visually.png
     :align: center
+    :height: 432 px
+    :width: 1416 px
+    :scale: 50 %
 
 Ví dụ code
 ==========
