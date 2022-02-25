@@ -1,7 +1,7 @@
 import math
 import numpy as np
 
-# Neural Network w Matrices
+# Mạng Nơ-ron với các phép toán trên ma trận
 
 INPUT_LAYER_SIZE = 1
 HIDDEN_LAYER_SIZE = 2
@@ -24,11 +24,11 @@ def relu(Z):
 
 def relu_prime(Z):
     '''
-    Z - weighted input matrix
+    Z - ma trận đầu vào đã được đánh trọng số
 
-    Returns gradient of Z where all
-    negative values are set to 0 and
-    all positive values set to 1
+    Trả về gradient của Z với
+    các giá trị âm được gán bằng 0 và
+    các giá trị dương được gán bằng 1
     '''
     Z[Z < 0] = 0
     Z[Z > 0] = 1
@@ -43,19 +43,18 @@ def cost_prime(yHat, y):
 
 def feed_forward(X):
     '''
-    X    - input matrix
-    Zh   - hidden layer weighted input
-    Zo   - output layer weighted input
-    H    - hidden layer activation
-    y    - output layer
-    yHat - output layer predictions
+    X    - Ma trận đầu vào
+    Zh   - Đầu vào được đánh trọng số qua tầng ẩn
+    Zo   - Kết quả đánh trọng số qua tầng đầu ra
+    H    - Đầu ra kích hoạt tầng ẩn
+    yHat - Kết quả dự đoán ở tầng đầu ra
     '''
 
-    # Hidden layer
+    # Tầng ẩn - Hidden layer
     Zh = np.dot(X, Wh) + Bh
     H = relu(Zh)
 
-    # Output layer
+    # Tầng đầu ra - Output layer
     Zo = np.dot(H, Wo) + Bo
     yHat = relu(Zo)
     return yHat
@@ -83,5 +82,3 @@ def backprop(X, y, lr):
     # Update biases
     Bo -= lr * dBo
     Bh -= lr * dBh
-
-

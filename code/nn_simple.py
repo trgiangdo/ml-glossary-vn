@@ -5,13 +5,14 @@ def relu(z):
     return max(0,z)
 
 def feed_forward(x, Wh, Wo):
-    # Hidden layer
+    # Tầng ẩn - Hidden layer
     Zh = x * Wh
     H = relu(Zh)
 
-    # Output layer
+    # Tầng đầu ra - Output layer
     Zo = H * Wo
     output = relu(Zo)
+
     return output
 
 def relu_prime(z):
