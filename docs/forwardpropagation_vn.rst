@@ -7,13 +7,16 @@ Lan truyền xuôi - *Forwardpropagation*
 .. contents:: :local:
 
 Mạng nơ-ron đơn giản
-===================
+====================
 
 Lan truyền xuôi trong mạng nơ-ron là quá trình mà mạng nơ-ron đưa ra dự đoán.
 Dữ liệu đầu vào được "truyền xuôi" qua từng tầng của mạng tới tầng cuối cùng, cũng là tầng đầu ra chứa dự đoán của mạng.
 
 .. image:: images/neural_network_simple.png
     :align: center
+    :height: 224 px
+    :width: 804 px
+    :scale: 60 %
 
 Với một mạng nơ-ron đơn giản chỉ có 1 tầng ẩn như hình minh hoạ trên với mỗi tầng chỉ có 1 nơ-ron, quá trình lan truyền xuôi có thể được mô tả bằng công thức toán học như sau:
 
@@ -23,8 +26,8 @@ Với một mạng nơ-ron đơn giản chỉ có 1 tầng ẩn như hình minh 
 
 trong đó :math:`A` là hàm kích hoạt (ví dụ như :ref:`activation_relu`), :math:`X` là đầu vào của mạng, :math:`W_h` và :math:`W_o` lần lượt là trọng số của từng tầng trong mạng.
 
-Các bước thực hiện
------------------
+Các bước thực hiện lan truyền xuôi
+----------------------------------
 
 1. Đánh trọng số đầu vào khi truyền dữ liệu đầu vào tới tầng ẩn bằng cách nhân :math:`X` với trọng số ẩn :math:`W_h`.
 2. Áp dụng hàm kích hoạt ở tầng ẩn và truyền kết quả tới tầng đầu ra.
@@ -40,7 +43,7 @@ Hãy cùng viết phương thức :code:`feed_forward()` để truyền dữ li�
     :language: python
     :lines: 4-16
 
-``x`` là đầu vào của mạng, ``Zo`` và ``Zh`` là kết quả đánh trọng số đầu vào, và ``Wo`` và ``Wh`` là các trọng số.
+Trong đoạn code trên, ``x`` là đầu vào của mạng, ``Zo`` và ``Zh`` là kết quả đánh trọng số đầu vào, và ``Wo`` và ``Wh`` là các trọng số.
 
 
 Truyền xuôi trong Mạng Nơ-ron thực tế
@@ -52,7 +55,9 @@ Các mạng nơ-ron hiện đại có nhiều tầng ẩn hơn, mỗi tầng có
 
 .. image:: images/neural_network_w_matrices.png
     :align: center
-    :scale: 80%
+    :height: 464 px
+    :width: 884 px
+    :scale: 55 %
 
 Kiến trúc
 ---------
@@ -94,7 +99,7 @@ Như bạn có thể thấy, số chiều của các ma trận trọng số ph�
 Số chiều của ma trận trọng số giữa 2 tầng được quyết đỉnh bởi kích thước của 2 tầng đó, trong đó số *hàng (rows)* phải bằng với số nơ-ron của tầng trước, và số *cột (columns)* phải bằng với số nơ-ron của tầng sau đó.
 Điều này có nghĩa là có 1 trọng số tương ứng với 1 khớp thần kinh liên kết giữa 2 nơ-ron giữa 2 tầng.
 
-Bạn đọc có thể tham khảo thêm về khởi tạo trọng số ngẫu nhiên trong ghi chú khoá học CS231 của Stanford [1]_, chương Mạng nơ-ron.
+Bạn đọc có thể tham khảo thêm về khởi tạo trọng số ngẫu nhiên trong ghi chú khoá học CS231 của Stanford [1]_, chương Neural Network - Mạng nơ-ron.
 
 
 Hệ số điều chỉnh
