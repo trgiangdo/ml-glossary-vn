@@ -20,9 +20,9 @@ Một mạng nơ-ron truyền đầu vào qua nhiều tầng nơ-ron ẩn qua c�
     :scale: 55 %
 
 Một mạng nơ-ron có thể được huấn luyện bằng các kỹ thuật tối ưu như :doc:`gradient_descent_vn`.
-Sau mỗi vòng lặp, hàm lỗi tượng trưng cho mất mát dự đoán được tính dựa vào sự sai lệch giữa dự đoán của mô hình và nhãn thực.
+Sau mỗi vòng lặp, hàm lỗi tượng trưng cho mất mát dự đoán được tính dựa vào sự sai lệch giữa dự đoán của mô hình và quan sát thực tế.
 Đạo hàm của hàm lỗi được tính và truyền ngược lại mạng sử dụng kỹ thuật có tên gọi :doc:`backpropagation_vn`.
-Các hệ số (trọng số) của mỗi nơ-ron sau đó được điều chỉnh tuỳ vào ảnh hưởng của nó tới tổng lỗi của mạng (dựa theo đạo hàm riêng).
+Các hệ số (trọng số) của mỗi nơ-ron sau đó được điều chỉnh tuỳ vào ảnh hưởng của nó tới tổng lỗi của mạng (dựa vào đạo hàm riêng).
 Quá trình học này được lặp đi lặp lại cho tới khi hàm lỗi đạt giá trị dưới 1 ngưỡng nhất định.
 
 
@@ -31,11 +31,13 @@ Nơ-ron
 
 Một nơ-ron nhận 1 vector đầu vào được đánh trọng số, đưa đầu vào qua hàm kích hoạt, và trả về đầu ra.
 
-.. image:: images/neuron.png
+.. figure:: images/neuron.png
     :align: center
     :height: 302 px
     :width: 682 px
     :scale: 60 %
+
+    Một nơ-ron với các đầu vào :math:`(X_1, X_2, X_3)`, các trọng số :math:`(W_1, W_2, W_3)` trên khớp thần kinh, và hàm kích hoạt **Sigmoid**.
 
 Đầu vào của mỗi nơ-ron có thể là vector đặc trưng từ tập huấn luyện, hoặc là đầu ra của tầng nơ-ron trước nó.
 Từng phần tử của đầu vào sau đó được đánh trọng số khi được truyền qua khớp thần kinh (*synapse*) tới nơ-ron.
@@ -49,6 +51,7 @@ Khớp thần kinh - *Synapse*
 Các khớp thần kinh cũng giống như các đường truyền trong mạng nơ-ron.
 Chúng liên kết đầu vào với các nơ-ron, nơ-ron ở tầng trước tới nơ-ron tầng kế tiếp, và từ nơ-ron tới đầu ra.
 Để có thể đi từ 1 nơ-ron này tới 1 nơ-ron khác, thông tin sẽ phải di chuyển qua các khớp thần kinh và trả lệ phí (đánh trọng số) khi đi qua.
+
 Thông thường, giữa 2 nơ-ron chỉ có 1 khớp thần kinh duy nhất liên kết chúng với nhau và được gán cho 1 trọng số riêng biệt.
 Khi ta đề cập tới việc cập nhật trọng số trong một mạng, thực chất đó là việc điều chỉnh các trọng số của các khớp thần kinh này.
 
@@ -71,8 +74,8 @@ Hệ số điều chỉnh giúp mô hình biểu diễn mối quan hệ tuyến 
 Hệ số điều chỉnh cũng cần được học trong quá trình huấn luyện mạng nơ-ron.
 
 
-Các tầng - *Layers*
-===================
+Các tầng trong mạng nơ-ron cơ bản - *Layers*
+============================================
 
 .. image:: images/neural_network_simple.png
     :align: center
@@ -119,7 +122,7 @@ Nếu có 3 nơ-ron ở tầng trước trong 1 mạng liên kết đầy đủ 
   Z &= \sum_{i=1}^{n}x_i w_i \\
     &= x_1 w_1 + x_2 w_2 + x_3 w_3 + \ldots
 
-Chú ý rằng công thức trên giống hệt với công thức của mô hình hồi quy tuyến tính.
+*Chú ý* rằng công thức trên giống hệt với công thức của mô hình hồi quy tuyến tính.
 Thực chất, mạng nơ-ron với 1 nơ-ron chính là mô hình hồi quy tuyến tính.
 Sự khác biệt duy nhất là giai đoạn áp dụng hàm kích hoạt tại mỗi nơ-ron sau khi tính tổng đầu vào đánh trọng số.
 
@@ -127,7 +130,7 @@ Sự khác biệt duy nhất là giai đoạn áp dụng hàm kích hoạt tại
 Hàm kích hoạt - Activation Functions
 ====================================
 
-Hàm kích hoạt tồn tại trong các tầng của mạng nơ-ron và biến đổi dữ liệu nơ-ron nhận được trước khi truyền thông tin sang tầng kế tiếp.
+:ref:`Hàm kích hoạt <activation_functions_vn>` tồn tại trong các tầng của mạng nơ-ron và biến đổi dữ liệu nơ-ron nhận được trước khi truyền thông tin sang tầng kế tiếp.
 Hàm kích hoạt chính là thành phần cho phép mạng nơ-ron mô hình hoá các quan hệ phi tuyến phức tạp giữa các thuộc tính trong dữ liệu.
 Một số hàm kích hoạt được sử dụng phổ biến trong các mạng nơ-ron gồm có :ref:`hàm relu <activation_relu>` và :ref:`hàm sigmoid <activation_sigmoid>`.
 
