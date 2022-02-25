@@ -15,6 +15,9 @@ Một mạng nơ-ron truyền đầu vào qua nhiều tầng nơ-ron ẩn qua c�
 
 .. image:: images/neural_network_w_matrices.png
     :align: center
+    :height: 464 px
+    :width: 884 px
+    :scale: 55 %
 
 Một mạng nơ-ron có thể được huấn luyện bằng các kỹ thuật tối ưu như :doc:`gradient_descent_vn`.
 Sau mỗi vòng lặp, hàm lỗi tượng trưng cho mất mát dự đoán được tính dựa vào sự sai lệch giữa dự đoán của mô hình và nhãn thực.
@@ -30,6 +33,9 @@ Một nơ-ron nhận 1 vector đầu vào được đánh trọng số, đưa đ
 
 .. image:: images/neuron.png
     :align: center
+    :height: 302 px
+    :width: 682 px
+    :scale: 60 %
 
 Đầu vào của mỗi nơ-ron có thể là vector đặc trưng từ tập huấn luyện, hoặc là đầu ra của tầng nơ-ron trước nó.
 Từng phần tử của đầu vào sau đó được đánh trọng số khi được truyền qua khớp thần kinh (*synapse*) tới nơ-ron.
@@ -70,6 +76,9 @@ Các tầng - *Layers*
 
 .. image:: images/neural_network_simple.png
     :align: center
+    :height: 224 px
+    :width: 804 px
+    :scale: 60 %
 
 .. rubric:: Tầng đầu vào
 
