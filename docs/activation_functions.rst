@@ -1,14 +1,14 @@
 .. _activation_functions:
 
 ====================
-Activation Functions
+Hàm kích hoạt
 ====================
 
 .. contents:: :local:
 
 .. _activation_linear:
 
-Linear
+Hàm Tuyến Tính
 ======
 
 A straight line function where activation is proportional to input ( which is the weighted sum from neuron).
