@@ -8,7 +8,7 @@ Hàm kích hoạt
 
 .. _activation_linear:
 
-Hàm Tuyến Tính
+Các hàm Tuyến Tính
 ======
 
 A straight line function where activation is proportional to input ( which is the weighted sum from neuron).
