@@ -53,11 +53,14 @@ make html
 
 4. Xác nhận các thay đổi của bạn bằng cách mở tệp `index.html` trong thư mục `_build/` sử dụng trình duyệt bất kỳ và tìm đến mục bạn thay đổi
 
-5. [Đề xuất một Pull Request mới](https://help.github.com/articles/creating-a-pull-request/)
+5. [Đề xuất một Pull Request mới](contributing/CONTRIBUTING_INSTRUCTION.md)
+
 
 ### Báo cáo lỗi hoặc đề xuất thay đổi
 
-Bạn có thể báo cáo lỗi hoặc đề xuất thêm bớt nội dung bằng cách tạo một [issue](https://github.com/trgiangdo/ml-glossary-vn/issues) mà không cần phải tạo pull request.
+Bạn có thể báo cáo lỗi hoặc đề xuất thêm bớt nội dung bằng cách [tạo một issue](contributing/CREATING_ISSUE_INSTRUCTION.md) mà không cần phải tạo pull request.
+
+Bạn cũng có thể tham gia phản biện (review) các Pull Request theo Hướng dẫn dành cho người phản biện **[tại đây](contributing/REVIEWER_INSTRUCTION.md)**.
 
 
 ## Hướng dẫn định dạng văn bản
@@ -80,10 +83,6 @@ Bạn cũng có thể đề xuất một pull request "thô" mà không cần h�
 
 * [Thêm và chỉnh sửa phương trình](http://www.sphinx-doc.org/en/stable/ext/math.html)
 * [Làm việc với Jupyter Notebook](http://louistiao.me/posts/demos/ipython-notebook-demo/)
-<!-- * Quickstart with Jupyter notebook template
-* Graphs and charts
-* Importing images
-* Linking to code -->
 
 
 ## Tham khảo
