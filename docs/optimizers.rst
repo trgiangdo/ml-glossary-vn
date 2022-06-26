@@ -1,7 +1,7 @@
 .. _optimizers:
 
 ==========
-Hàm tối ưu
+Hàm tối ư
 ==========
 
 .. rubric:: What is Optimizer ? 
