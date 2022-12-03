@@ -20,40 +20,46 @@ Trong học máy, :ref:`quá khớp <glossary_overfitting>` là hiện tượng 
 Tăng cường Dữ liệu - *Data Augmentation*
 ========================================
 
-Having more data is the surest way to get better consistent estimators (ML model). Unfortunately, in the real world getting a large volume of useful data for training a model is cumbersome and labelling is an extremely tedious (or expensive) task.
+Để cải thiện độ ổn định của bộ ước lượng (trong mô hình ML), cách chắc chắn nhất là có thêm dữ liệu huấn luyện.
+Đáng tiếc rằng trong thực tế, việc thu thập một lượng lớn dữ liệu chất lượng để huấn luyện mô hình là khá khó khăn, và gán nhán cho dữ liệu cũng là một việc vô cùng chán ngán (và đắt đỏ).
 
-'Gold standard' labelling requires more manual annotation. For example, in order to develop a better image classifier we can use Mturk and involve more man power to generate dataset, or we could crowdsource by posting on social media and asking people to contribute.
-The above process can yield good datasets; however, those are difficult to carry and expensive. On the other hand, having a small dataset will lead to the well-known problem of overfitting.
+Để thu được nhãn dữ liệu chất lượng, việc gán nhãn cần được thực hiện bằng tay.
+Ví dụ, để có thể phát triển và cải thiện một mô hình phân loại ảnh, ta có thể sử dụng Mturk để thuê người xây dựng tập dữ liệu, hoặc ta có thể tìm kiếm sự hỗ trợ bằng cách đăng bài lên mạng xã hội và nhờ mọi người đóng góp cho tập dữ liệu.
+Quá trình này có thể giúp thu được tập dữ liệu chất lượng tốt, tuy nhiên, rất khó và rất đắt đỏ để thực hiện.
+Mặt khác, một tập dữ liệu nhỏ sẽ gây ra hiện tượng quá khớp.
 
-Data Augmentation is one interesting regularization technique to resolve the above problem. The concept is very simple, this technique generates new training data from given original dataset. Dataset Augmentation provides a cheap and easy way to increase the volume of training data.
+Tăng cường dữ liệu là một trọng những kỹ thuật điều chuẩn thú vị giúp giải quyết vấn đề trên.
+Ý tưởng của kỹ thuật này khá đơn giản, đó là tạo thêm dữ liệu huấn luyện mới từ tập dữ liệu gốc.
+Tăng cường dữ liệu giúp tăng kích thước tập dữ liệu huấn luyện một cách đơn giản và rẻ hơn nhiều.
 
-This technique can be used for both NLP and CV.
+Kỹ thuật tăng cường dữ liệu thường được sử dụng trong NLP và CV.
+Trong CV, ta có thể sử dụng các kỹ thuật như Jitter, PCA và Flipping.
+Trong NLP, các kỹ thuật phổ biến gồm Thay thế từ đồng nghĩa (*Synonym Replacement*), Chèn từ ngẫu nhiên (*Random Insertion*), Xoá từ ngẫu nhiên (*Random Deletion*), và Embedding từ.
 
-In CV we can use the techniques like Jitter, PCA and Flipping. Similarly in NLP we can use the techniques like Synonym Replacement,Random Insertion, Random Deletion and Word Embeddings.
+Có rất nhiều thư viện có chứa sẵn các công cụ hỗ trợ tăng cường dữ liệu.
+Ví dụ, Keras cung cấp thư viện ImageDataGenerator để tăng cường tập dữ liệu ảnh.
 
-Many software libraries contain tools for data augmentation. For example, Keras provides the ImageDataGenerator for augmenting image datasets.
-
-Sample code for random deletion
+Đoạn code ví dụ cho kỹ thuật Xoá từ ngẫu nhiên:
 
 .. code-block:: python
 
 	def random_deletion(words, p):
 		"""
-		Randomly delete words from the sentence with probability p
+    Xoá ngẫu nhiên từ khỏi câu với xác suất `p`.
 		"""
 
-		#obviously, if there's only one word, don't delete it
+    # Nếu câu chỉ có 1 từ, đừng xoá ...
 		if len(words) == 1:
 			return words
 
-		#randomly delete words with probability p
+    # Ngẫu nhiên xoá từ khỏi câu với xác suất p
 		new_words = []
 		for word in words:
 			r = random.uniform(0, 1)
 			if r > p:
 				new_words.append(word)
 
-		#if you end up deleting all words, just return a random word
+    # Trường hợp tất cả các từ bị xoá khỏi câu, chỉ cần trả về 1 từ bất kỳ
 		if len(new_words) == 0:
 			rand_int = random.randint(0, len(words)-1)
 			return [words[rand_int]]
@@ -61,7 +67,8 @@ Sample code for random deletion
 		return new_words
 
 
-Furthermore, when comparing two machine learning algorithms, it is important to train both with either augmented or non-augmented dataset. Otherwise, no subjective decision can be made on which algorithm performed better
+Khi so sánh giữa hai thuật toán ML, ta cần đảm bảo rằng cả hai được huấn luyện trên cùng tập dữ liệu hoặc dược tăng cường hoặc không.
+Nếu không, việc quyết định thuật toán nào hoạt động tốt hơn sẽ không chuẩn xác.
 
 .. rubric:: Tài liệu khác
 
